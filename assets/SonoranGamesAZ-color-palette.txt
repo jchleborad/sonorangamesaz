@@ -1,0 +1,29 @@
+🌵 Arizona-Themed Color Palette (Vibrant)
+| Color Name          | Description                                  | Hex Code  |
+| ------------------- | -------------------------------------------- | --------- |
+| **Saguaro Green**   | Like the skin of a saguaro cactus            | `#587E4B` |
+| **Sunset Orange**   | Fiery desert sunset hues                     | `#FF6F3C` |
+| **Sedona Red**      | Red rocks and clay of Sedona                 | `#C1440E` |
+| **Sky Turquoise**   | Inspired by turquoise jewelry & clear skies  | `#4ECDC4` |
+| **Golden Sun**      | Warm, golden desert sunlight                 | `#F4A300` |
+| **Desert Purple**   | Echoes twilight over the desert              | `#7E57C2` |
+| **Ocotillo Bloom**  | Vivid reddish blooms of desert flora         | `#E63946` |
+| **Sandstone Beige** | Earthy neutral that complements bright tones | `#E2C6A7` |
+
+🎨 Suggested Combinations
+Primary + Accent: Saguaro Green + Sunset Orange
+Warm Blend: Sedona Red, Golden Sun, Ocotillo Bloom
+Desert Sky: Sky Turquoise + Desert Purple + Sandstone Beige
+
+
+Logo Fill:
+S = 000000fe
+G = 4a0000fe
+State = 4a0000fe
+
+logo Stroke
+S = 4faeb4fe
+S = 4faeb4fe
+State = 4faeb4fe
+
+https://www.dreamstime.com/photos-images/vibrant-desert-sunset-landscape-orange-purple-hues.html

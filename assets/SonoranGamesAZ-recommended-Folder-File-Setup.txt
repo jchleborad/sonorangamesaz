@@ -1,0 +1,23 @@
+✅ Recommended Folder & File Setup
+/Chleborad/SonoranGamesAZ/
+├── _includes/               # Reusable HTML components (e.g. navbar.html, footer.html)
+├── _layouts/
+│   └── default.html         # Base HTML template
+├── _posts/                  # Blog posts (if used)
+├── _site/                   # Generated site output (auto)
+├── assets/
+│   └── images/
+│   └── SonoranGamesAZ-color-palette.txt
+├── css/
+│   └── site.css             # Global styles
+├── pages/                   # 💡 Your new section for content pages
+│   ├── nflpool.html
+│   ├── about.html
+│   └── games.html
+├── scripts/                 # JS scripts
+├── .gitignore
+├── _config.yml
+├── CNAME
+├── favicon.ico
+├── index.html              # ✅ This becomes your landing page
+└── login.html              # ✅ Still accessible at /login.html

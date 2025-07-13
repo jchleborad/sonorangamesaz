@@ -1,0 +1,625 @@
+/* ========== MISCELLANEOUS ========== */
+/* IMPORT FONTS */
+@import url('https://fonts.googleapis.com/css2?family=Manjari:wght@100;400;700&display=swap');
+
+
+/* ========== RESET & BASE ========== */
+body {
+    height: 100%;
+    width: 100%;
+    font-family: 'Manjari', sans-serif;
+    color: #222;
+    background-color: #f5f5f5;
+    padding-top: 35px;
+}
+
+a {
+    color: #000;;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.arrow-icon {
+  font-size: 2rem;
+  color: #0000FF;
+  margin: 0 1rem;
+  animation: flashArrow 1s infinite alternate;
+  text-shadow:
+    0 0 10px #fffb00,
+    0 0 20px #fffb00,
+    0 0 4px #fffb00;
+}
+
+body {
+  padding-top: 70px; /* height of your navbar + slight buffer */
+}
+
+/* ========== LAYOUT & STRUCTURE ========== */
+.navbar {
+  padding-top: 0.3rem;
+  padding-bottom: 0.3rem;
+  min-height: 50px;
+}
+
+.navbar-brand img.logo {
+  height: auto;
+  width: auto;
+  max-height: 60px;    /* Adjust as needed */
+  max-width: 100%;     /* Prevents overflow */
+}
+
+.logo-chleb {
+  height: 60px;
+  width: auto; /* Maintain aspect ratio */
+  margin-left: 0.5rem;
+  border-radius: 8px; /* or adjust as needed */
+  box-shadow: 0 0 4px rgba(0,0,0,0.3); /* optional */
+}
+
+
+.navbar-nav li {
+    padding-right: 20px
+}
+
+.nav-link {
+    font-size: 1.5em !important;
+}
+
+footer {
+    background-color: #3f3f3f;
+    color: #d5d5d5;
+    padding-top: 2rem;
+}
+
+footer a {
+    color: #d5d5d5;
+}
+
+footer p {
+    margin-bottom: 0%;
+}
+
+footer h5 {
+    margin-top: .5em;
+}
+
+footer div h5 {
+    font-size: .8rem;
+}
+
+footer div p {
+    font-size: .6rem;
+}
+
+.navbar, .navbar .nav-link {
+    font-family: 'Manjari', sans-serif !important;
+}
+
+.footer-full {
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  background-color: #3f3f3f;
+}
+
+section.d-flex {
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+section {
+    padding: 60px 0;
+}
+
+.nfl-background .footer-full {
+  margin: 0;
+  padding: 0.5rem 0;
+  background-color: #2c2f33;
+  color: white;
+  text-align: center;
+}
+
+/* ========== TYPOGRAPHY ========== */
+h2, h1, h3, h4, h5, h6 {
+    font-family: 'Manjari', sans-serif;
+}
+
+/* ========== IMAGES & MEDIA ========== */
+img {
+    image-orientation: from-image;
+}
+
+.logo {
+    margin-right: 3px;
+}
+
+@media screen and (orientation: portrait) {
+    img.img-header {
+        max-width: 90%;
+    }
+  }
+
+@media screen and (orientation: landscape) {
+    img.img-header {
+        max-height: 90%;
+    }
+  }
+
+/* ========== CUSTOM COMPONENTS ========== */
+@media (max-width: 576px) {
+  .nfl-title {
+    margin-top: 4rem; /* or adjust as needed */
+  }
+}
+  
+.nfl-overlay {
+  background-color: rgba(255, 255, 255, 0.4); /* Lightened overlay */
+  min-height: 100vh;
+  padding-top: 100px;
+  color: black;
+}
+
+.nfl-background {
+  background: url('/assets/images/nfl-staduim.jpg') no-repeat center center fixed;
+  background-size: cover;
+}
+
+.nfl-btn {
+  background-color: #013369; /* NFL Blue */
+  border: 2px solid #D02131; /* NFL Red */
+  color: white;
+  font-weight: bold;
+  margin: 0.5rem;
+}
+/*
+.nfl-btn:hover {
+  background-color: #D02131;
+  border-color: #013369;
+  color: white;
+}
+
+.nfl-btn-rules {
+  background-color: #D02131; /* NFL Blue 
+  border: 2px solid #013369; /* NFL Red 
+  color: white;
+  font-weight: bold;
+  margin: 0.5rem;
+}
+
+.nfl-btn-rules:hover {
+  background-color: #013369;
+  border-color: #D02131;
+  color:white;
+}
+*/
+.nfl-section {
+  margin-bottom: 4rem;
+  text-align: center;
+}
+
+@media (max-width: 1024px) {
+  .nfl-embed-scaled-matchups {
+    height: 467px; /* 550 * 0.85 */
+  }
+}
+
+@media (max-width: 768px) {
+  .nfl-embed-scaled-matchups {
+    height: 385px; /* 550 * 0.7 */
+  }
+}
+
+@media (max-width: 576px) {
+  .nfl-embed-scaled-matchups {
+    height: 225px; /* 550 * 0.55 */
+  }
+}
+
+@media (max-width: 1024px) {
+  .nfl-embed-scaled-results {
+    height: 383px; /* 450 * 0.85 */
+  }
+}
+
+@media (max-width: 768px) {
+  .nfl-embed-scaled-results {
+    height: 315px; /* 450 * 0.7 */
+  }
+}
+
+@media (max-width: 576px) {
+  .nfl-embed-scaled-results {
+    height: 248px; /* 450 * 0.55 */
+    max-width: 250px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .nfl-embed-scaled-standings {
+    height: 300px;             /* 400px × 0.75 */
+    max-width: 320px;
+  }
+}
+
+@media (max-width: 768px) {
+  .nfl-embed-scaled-standings {
+    height: 260px;             /* 400px × 0.65 */
+    max-width: 285px;
+  }
+}
+
+@media (max-width: 576px) {
+  .nfl-embed-scaled-standings {
+    height: 180px;             /* 400px × 0.55 */
+    max-width: 200px;
+  }
+}
+
+/* ========== PAGES - NFL POOL.HTML ========== */
+.nfl-week-title {
+  font-size: 2rem;
+  font-weight: bold;
+  background-color: #013369;
+  color: white;
+  padding: 0.75rem 3rem 0.3rem 3rem; /* top right bottom left */
+  border-radius: 0.5rem;
+  display: inline-block;
+  margin-bottom: 0rem;
+  box-shadow: 0 0 8px rgba(0,0,0,0.5);
+}
+
+.nfl-title h1 {
+  color: #D02131;
+  font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  text-shadow: 
+    -2px -2px 0 white,
+     2px -2px 0 white,
+    -2px  2px 0 white,
+     2px  2px 0 white;
+  /*margin-bottom: .5rem;*/
+  font-size: 5rem;
+}
+
+.nfl-section h1 {
+  color:#D02131;
+  font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  text-shadow: 
+    -2px -2px 0 white,
+     2px -2px 0 white,
+    -2px  2px 0 white,
+     2px  2px 0 white;
+  margin-bottom: 1.5rem;
+}
+
+.nfl-background {
+  min-height: 100vh;
+  background: url('/assets/images/nfl-storm.jpg') no-repeat center center fixed;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin: 0;
+}
+
+.nfl-background .nfl-overlay {
+  flex-grow: 1;
+}
+
+.nfl-section {
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.nfl-section table {
+  margin-top: .5rem;
+  margin-right: auto;
+  margin-left: auto;
+  font-size: 0.85rem;
+  width: 50%;
+  text-align: center;
+  line-height: .9;
+}
+
+.nfl-section table th {
+  background-color: #D02131;
+  color: white;
+  font-weight: 600;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.nfl-section table td {
+  background-color: black;
+  color: white;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.nfl-section {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.nfl-section table {
+  margin-top: 0.5rem;  /* Tighten space between title and table */
+  margin-bottom: 0.5rem; /* Tighten space after table */
+}
+
+#player-picks-table-container table {
+  font-size: 0.85rem;
+  overflow-x: auto;
+}
+
+/* LANDING */
+.landing-hero {
+  height: 60vh;
+  padding-top: 1px;
+  background: linear-gradient(to bottom right, #779eb2, #f5f5f5);
+  color: #222;
+  margin-top: 0;
+}
+
+.landing-hero h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #222;
+}
+
+.landing-hero .lead {
+  font-size: 1.25rem;
+  max-width: 700px;
+  margin: 0 auto 2rem auto;
+}
+
+
+/* ========== LOGIN PAGE ========== */
+#site-login {
+  background-color: #eaeaea;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.site-login-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  padding: 2rem;
+  flex-wrap: wrap;
+}
+
+.site-login-box {
+  background-image: url('/assets/images/login-desert-sunset.jpg');
+  background-size: cover;
+  background-position: center;
+  color: white;
+  text-shadow: 1px 1px 2px black;
+  padding: 4rem 3rem;
+  width: 900px;
+  height: 290px;
+  border-radius: 20px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.3);
+  text-align: center;
+}
+
+.site-login-logo {
+  height: 150px;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+.site-login-input-wrapper {
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.site-login-input {
+  padding: 0.75rem 2.5rem 0.75rem 0.75rem;
+  width: 70%;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+.toggle-password {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  height: 18px;
+  width: 25px;
+}
+
+.site-login-button {
+  background-color: #4faeb4fe;
+  color: #4a0000fe;
+  padding: 0.6rem 1.25rem .3rem 1.25rem;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.site-login-button:hover {
+  background-color: #4faeb4fe;
+}
+
+.site-login-error {
+  display: none; /* ✅ Hide by default */
+  color: #ff4444;
+  margin-top: 0.75rem;
+  font-weight: bold;
+}
+
+.site-login-password-container {
+  position: relative;
+  width: 50%;
+  margin: 0 auto 1rem; /* Centered with spacing below */
+}
+
+.site-login-eye {
+  position: absolute;
+  top: 50%;
+  right: 70px;
+  transform: translateY(-50%);
+  height: 18px;
+  width: auto;
+  cursor: pointer;
+}
+
+
+/* ========== LOGIN PAGE DARK MODE ========== */
+.dark-mode .site-login-input::placeholder {
+  color: #ffffff;         /* bright white */
+  opacity: 1;             /* override dimmed default */
+}
+
+.dark-mode body {
+  background-color: #1e1e1e;
+}
+.dark-mode #site-login {
+  background-color: #3b3939;
+  color: #ffffff;
+}
+
+.dark-mode .site-login-box {
+  background-color: #2c2c2c;
+  text-shadow: 1px 1px 2px #000;
+  border: 1px solid #555;
+}
+
+.dark-mode .site-login-input {
+  background-color: #3a3a3a;
+  color: #ffffff;
+  border: 1px solid #777;
+}
+
+.dark-mode .site-login-button {
+  background-color: #ffc627;
+  color: #4a0000fe;
+}
+
+.dark-mode .site-login-error {
+  color:white;
+}
+
+/* ========== RESPONSIVE LOGIN ========== */
+
+@media (max-width: 768px) {
+  .site-login-wrapper {
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    gap: 1.5rem;
+  }
+
+  .site-login-box {
+    width: 90vw;
+    padding: 1.5rem;
+  }
+
+  .site-login-logo {
+    height: 100px;
+  }
+
+  .site-login-input {
+    font-size: 1rem;
+  }
+
+  .toggle-password {
+    font-size: 1.2rem;
+  }
+
+  .site-login-button {
+    width: 100%;
+    font-size: 1rem;
+  }
+}
+
+/* ========== INDEX LANDING PAGE STYLES ========== */
+
+.landing-wrapper {
+  min-height: 100vh;
+  background-color: #1e1e1e;
+  padding: 2rem;
+}
+
+.landing-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 900px;
+  margin: auto;
+  color: white;
+  text-align: center;
+}
+
+.landing-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px black;
+}
+
+.landing-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 100%;
+}
+
+.landing-image {
+  max-width: 100%;
+  max-height: 500px; /* Adjust this height limit as needed */
+  height: auto;
+  width: auto;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.4);
+  object-fit: contain;
+}
+
+.landing-logo {
+  width: 150px;
+  height: auto;
+  filter: drop-shadow(1px 1px 2px black);
+}
+
+.landing-subtitle {
+  font-size: 1.25rem;
+  text-shadow: 1px 1px 2px black;
+  max-width: 600px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .landing-title {
+    font-size: 2rem;
+  }
+
+  @media (max-width: 768px) {
+  .landing-image {
+    max-height: 200px;
+  }
+}
+
+  .landing-subtitle {
+    font-size: 1rem;
+  }
+
+  .landing-logo {
+    width: 100px;
+  }
+
+  .landing-box {
+    padding: 2rem;
+  }
+}
+
