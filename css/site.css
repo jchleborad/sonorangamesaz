@@ -52,14 +52,25 @@ body {
   max-width: 100%;     /* Prevents overflow */
 }
 
-.logo-chleb {
-  height: 60px;
+.logo-chleb-nav {
+  height: 30px;
   width: auto; /* Maintain aspect ratio */
   margin-left: 0.5rem;
   border-radius: 8px; /* or adjust as needed */
   box-shadow: 0 0 4px rgba(0,0,0,0.3); /* optional */
 }
 
+.logo-chleb-footer {
+  height: 25px;
+  width: auto; /* Maintain aspect ratio */
+  margin-left: 0.5rem;
+  border-radius: 8px; /* or adjust as needed */
+  box-shadow: 0 0 4px rgba(0,0,0,0.3); /* optional */
+}
+
+.footer-title {
+  font-size: 1.3rem; /* Slightly larger than normal */
+}
 
 .navbar-nav li {
     padding-right: 20px
@@ -353,6 +364,11 @@ img {
 #player-picks-table-container table {
   font-size: 0.85rem;
   overflow-x: auto;
+}
+
+footer .container h4 {
+  margin-top: 7px;
+  margin-bottom: 0;
 }
 
 /* LANDING */
