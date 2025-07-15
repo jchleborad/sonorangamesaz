@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
   console.log("✅ nflpool-data.js loaded and DOM ready");
 
-  const baseURL = "https://script.google.com/macros/s/AKfycbxfXCHCG_oGZXWlZvtE9TRsvdZa5loPe9G0X9YtD1KnWWomg3A5G6CvkX2zXi0wq_yM/exec";
+  const baseURL = "https://script.google.com/macros/s/AKfycbwv-ERixCCxDtMKqneSi4wZXABjpf-GPto9H6XAGz18_rqhTIOVYSwDKkTQk1kr9SPq/exec";
 
   const sections = [
     { action: "matchups", containerId: "matchup-table-container" },
