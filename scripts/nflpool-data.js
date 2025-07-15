@@ -15,7 +15,7 @@ fetch(`${baseURL}?action=matchups`)
   .then(data => {
     if (data.title) {
       const weekDiv = document.createElement("div");
-      weekDiv.classList.add("nfl-week-title", "mb-2", "text-white", "text-center");
+      weekDiv.classList.add("nfl-week-title", "text-white", "text-center");
       weekDiv.textContent = data.title;
 
       const container = document.getElementById("week-title-container");
