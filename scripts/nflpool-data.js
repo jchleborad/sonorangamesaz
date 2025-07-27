@@ -6,7 +6,8 @@ document.addEventListener("DOMContentLoaded", function () {
   const sections = [
     { action: "matchups", containerId: "matchup-table-container" },
     { action: "results", containerId: "results-table-container" },
-    { action: "standings", containerId: "standings-table-container" }
+    { action: "standings", containerId: "standings-table-container" },
+    
   ];
 
 // Fetch just the Week title from Matchups for top display
@@ -29,19 +30,32 @@ fetch(`${baseURL}?action=matchups`)
 
   sections.forEach(({ action, containerId }) => {
     const container = document.getElementById(containerId);
+
     fetch(`${baseURL}?action=${action}`)
       .then(res => res.json())
       .then(data => {
         container.innerHTML = "";
 
-        const table = buildTable(data.headers, data[action]);
+        /* ---------- CumScores needs Rank column ---------- */
+        let headers = data.headers;
+        let rows    = data[action];            // "cumscores" for this section
+
+        if (action === "cumscores") {
+          headers = ["Rank", ...headers];
+          rows    = rows.map((r, i) => ({ Rank: i + 1, ...r }));
+        }
+        /* -------------------------------------------------- */
+
+        const table = buildTable(headers, rows);
         container.appendChild(table);
       })
       .catch(err => {
         console.error(`❌ Error loading ${action}:`, err);
-        container.innerHTML = `<p class="text-danger">Failed to load ${action}.</p>`;
+        container.innerHTML =
+          `<p class="text-danger">Failed to load ${action}.</p>`;
       });
   });
+
 
   const picksButton = document.getElementById("toggle-picks-btn");
   const picksSection = document.getElementById("player-picks");

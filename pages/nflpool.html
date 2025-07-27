@@ -106,19 +106,23 @@
         <h1>NFL GameDay!</h1>
         <div class="submit-picks-highlight d-flex align-items-center justify-content-center mb-0">
           <i class="fas fa-angle-double-right arrow-icon"></i>
+
+          <!--REMOVE "disabled" TO ACTIVATE BUTTON. ADD BACK IN TO DEACTIVEATE
+          BUTTON ENABLED:  class="btn nfl-btn">
+          BUTTON DISABLED:  class="btn nfl-btn disabled"-->
           <a href="https://forms.gle/JzKvcxXrCzPQGc7t5" class="btn nfl-btn" target="_blank">Submit Picks</a>
 
           <!--REMOVE "disabled" TO ACTIVATE BUTTON. ADD BACK IN TO DEACTIVEATE
-          BUTTON ENABLED:  class="btn nfl-btn ml-3">
-          BUTTON DISABLED:  class="btn nfl-btn ml-3" disabled>-->
-          <button id="toggle-picks-btn" class="btn nfl-btn ml-3">Show Player Picks</button>
+          BUTTON ENABLED:  class="btn nfl-btn">
+          BUTTON DISABLED:  class="btn nfl-btn" disabled>-->
+          <button id="toggle-picks-btn" class="btn nfl-btn" disabled>Show Player Picks</button>
           <i class="fas fa-angle-double-left arrow-icon"></i>
           
         </div>
       </div>
 
       <div class="text-center mb-0">
-        <a href="https://www.google.com/search?q=nfl+schedule#sie=lg;/g/11lyp42zk1;6;/m/059yj;mt;fp;1;;;" class="btn nfl-btn d-inline-flex flex-column align-items-center" target="_blank">
+        <a href="https://www.nfl.com/schedules/" class="btn nfl-btn d-inline-flex flex-column align-items-center" target="_blank">
           <span>2025 NFL Schedule</span>
           <small>(opens new window)</small>
         </a>
@@ -133,12 +137,12 @@
       </div>
 
       <section id="live-matchups" class="nfl-section nfl-matchups text-center">
-        <h1>This Week's Matchups</h1>
+        <h1>Pre-Season Week 1 Matchups</h1> <!--This Week's Matchups-->
         <div id="matchup-table-container" class="table-responsive mt-0 loading-placeholder">Loading matchups...</div>
       </section>
 
       <section id="live-results" class="nfl-section nfl-results text-center">
-        <h1>This Week's Results</h1>
+        <h1>PreSeason Week 1 Results</h1> <!--This Week's Results-->
         <div id="results-table-container" class="table-responsive mt-0 loading-placeholder">Loading results...</div>
       </section>
 
@@ -154,7 +158,7 @@
           <!-- Season Standings -->
           <!-- Previous Week Player Results -->
           <div class="col-md-6 col-12 mb-4">
-            <h1>Cumulative Scoring</h1>
+            <h1>Pre-Season Scoring</h1><!--Cumulative Scoring-->
             <div id="cumulative-scoring-table-container" class="table-responsive mt-0 loading-placeholder">
               <img src="/assets/images/CumScores.png" style="width: 100%; max-width: 400px; height: auto;">
               <!-- Cumulative Scoring table will be injected here by JS -->
@@ -162,7 +166,7 @@
             </div>
           </div>
           <div class="col-md-6 col-12 mb-4">
-            <h1>Player Rankings</h1>
+            <h1>Pre-Season Player Rankings</h1><!--Player Rankings-->
             <div id="standings-table-container" class="table-responsive mt-0 loading-placeholder">Loading Rankings...</div>
           </div>
 
@@ -170,7 +174,7 @@
       </section>
 
       <section id="player-picks" class="nfl-section text-center" style="display: none;">
-        <h1>Player Picks for Current Week</h1>
+        <h1>Player Picks for Pre-Season Week 1</h1><!--Player Picks for Current Week-->
         <div id="player-picks-table-container" class="table-responsive mt-0 loading-placeholder">Loading player picks...</div>
       </section>
     </div>
