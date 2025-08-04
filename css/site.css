@@ -67,11 +67,19 @@ body {
 }
 
 .logo-chleb-footer {
-  height: 25px;
+  height: 20px;
   width: auto; /* Maintain aspect ratio */
   margin-left: 0.5rem;
+  margin-top: 0rem;
   border-radius: 8px; /* or adjust as needed */
   box-shadow: 0 0 4px rgba(0,0,0,0.3); /* optional */
+}
+
+.created-footer-text {
+  font-size: 1rem; /* Adjust size as needed */
+  margin-right: 0px; /* Space between text and logo */
+  margin-top: 8px;
+  color: inherit;    /* Keeps link color consistent */
 }
 
 .footer-title {
