@@ -704,16 +704,31 @@ footer .container h4 {
 }
 
 
-/* Make Record (A) and Record (H) columns wider */
+/* Let content decide width */
 #matchup-table-container table {
-  table-layout: auto; /* let content drive width */
+  table-layout: auto;
 }
 
+/* Record (A) and Record (H) */
 #matchup-table-container th:nth-child(3),
 #matchup-table-container td:nth-child(3),
 #matchup-table-container th:nth-child(6),
 #matchup-table-container td:nth-child(6) {
-  min-width: 80px;     /* adjust as needed */
-  white-space: nowrap; /* prevents breaking into 2 lines */
-  text-align: center;  /* optional: keep it neat */
+  min-width: 80px;     /* fits values like 1-1-0 */
+  white-space: nowrap; 
+  text-align: center;
 }
+
+/* Last (A) and Last (H) */
+#matchup-table-container th:nth-child(4),
+#matchup-table-container td:nth-child(4),
+#matchup-table-container th:nth-child(7),
+#matchup-table-container td:nth-child(7) {
+  min-width: 50px;     /* enough space for W/L/T */
+  white-space: nowrap; 
+  text-align: center;
+}
+
+
+
+
