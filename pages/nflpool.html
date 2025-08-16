@@ -107,15 +107,15 @@
         <div class="submit-picks-highlight d-flex align-items-center justify-content-center mb-0">
           <i class="fas fa-angle-double-right arrow-icon"></i>
 
-          <!--REMOVE "disabled" TO ACTIVATE BUTTON. ADD BACK IN TO DEACTIVEATE
+          <!--**SUBMT PICKS BUTTON** - REMOVE "disabled" TO ACTIVATE BUTTON. ADD BACK IN TO DEACTIVEATE
           BUTTON ENABLED:  class="btn nfl-btn">
           BUTTON DISABLED:  class="btn nfl-btn disabled"-->
-          <a href="https://forms.gle/JzKvcxXrCzPQGc7t5" class="btn nfl-btn" target="_blank">Submit Picks</a>
+          <a href="https://forms.gle/JzKvcxXrCzPQGc7t5" class="btn nfl-btn disabled" target="_blank">Submit Picks</a>
 
-          <!--REMOVE "disabled" TO ACTIVATE BUTTON. ADD BACK IN TO DEACTIVEATE
+          <!--**SHOW PICKS BUTTON** - REMOVE "disabled" TO ACTIVATE BUTTON. ADD BACK IN TO DEACTIVEATE
           BUTTON ENABLED:  class="btn nfl-btn">
           BUTTON DISABLED:  class="btn nfl-btn" disabled>-->
-          <button id="toggle-picks-btn" class="btn nfl-btn" disabled>Show Player Picks</button>
+          <button id="toggle-picks-btn" class="btn nfl-btn">Show Player Picks</button>
           <i class="fas fa-angle-double-left arrow-icon"></i>
           
         </div>
@@ -135,6 +135,11 @@
       <div id="week-title-container">
         <!-- Week title will be injected here by JS -->
       </div>
+
+      <section id="player-picks" class="nfl-section text-center" style="display: none;">
+        <h1>Player Picks for Pre-Season Week 2</h1><!--Player Picks for Current Week-->
+        <div id="player-picks-table-container" class="table-responsive mt-0 loading-placeholder">Loading player picks...</div>
+      </section>
 
       <section id="live-matchups" class="nfl-section nfl-matchups text-center">
         <h1>Pre-Season Week 2 Matchups</h1> <!--This Week's Matchups-->
@@ -173,10 +178,6 @@
         </div>
       </section>
 
-      <section id="player-picks" class="nfl-section text-center" style="display: none;">
-        <h1>Player Picks for Pre-Season Week 2</h1><!--Player Picks for Current Week-->
-        <div id="player-picks-table-container" class="table-responsive mt-0 loading-placeholder">Loading player picks...</div>
-      </section>
     </div>
   </div>
 </div>
