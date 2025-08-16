@@ -703,3 +703,17 @@ footer .container h4 {
   }
 }
 
+
+/* Make Record (A) and Record (H) columns wider */
+#matchup-table-container table {
+  table-layout: auto; /* let content drive width */
+}
+
+#matchup-table-container th:nth-child(3),
+#matchup-table-container td:nth-child(3),
+#matchup-table-container th:nth-child(6),
+#matchup-table-container td:nth-child(6) {
+  min-width: 80px;     /* adjust as needed */
+  white-space: nowrap; /* prevents breaking into 2 lines */
+  text-align: center;  /* optional: keep it neat */
+}
