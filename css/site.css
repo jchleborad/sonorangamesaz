@@ -1082,6 +1082,7 @@ footer .container h4 {
 /* Applies to BOTH: top row numbers + left column numbers */
 .sb-grid > .sb-header.sb-num {
   background: rgba(1, 51, 105, 0.85); /* NFL blue */
+  /*...OR...background-color: #013369; /* to easily pick another color*/
   color: #fff;
 
   /* keep readable on stadium bg */
