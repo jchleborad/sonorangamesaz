@@ -1,0 +1,497 @@
+<!-- /pages/superbowl-squares.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!--LOGIN CHECK (same pattern as nflpool/index)-->
+  <script>
+    const isLoginPage = window.location.pathname.includes("login.html");
+    if (!localStorage.getItem("siteUser") && !isLoginPage) {
+      window.location.href = "/login.html";
+    }
+  </script>
+
+  <!-- GoatCounter Analytics (matches index.html) -->
+  <script data-goatcounter="https://sonorangamesaz.goatcounter.com/count"
+          async src="//gc.zgo.at/count.js"></script>
+
+  <title>Super Bowl Squares - Sonoran Games AZ</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="John Chleborad">
+  <meta name="description" content="Super Bowl Squares - Sonoran Games AZ">
+  <meta name="keywords" content="Super Bowl Squares, Office Pool, Sonoran Games AZ">
+
+  <!-- Bootstrap 4.6.2 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+
+  <!-- Your Site CSS -->
+  <link rel="stylesheet" href="/css/site.css">
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+
+  <!-- jQuery + Bootstrap Bundle -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- FontAwesome 6 -->
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <!--Comfortaa Font-->
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap" >
+
+</head>
+
+<body class="dark-mode" style="padding:0%">
+
+  <header>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+      <div class="container-fluid">
+
+        <a class="navbar-brand d-flex align-items-center" href="/">
+          <img class="logo" src="/assets/images/logo-sgaz-navbar-1200.png" height="80" width="40" alt="Sonoran Games Logo">
+        </a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+
+            <li class="nav-item">
+              <a class="nav-link" href="https://docs.google.com/document/d/1ml9DdIEx7Zp5B4TVmS142kMJr-NAqNWWVxyyiLt33_U/preview" target="_blank">Super Bowl Squares Rules</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="/pages/nflpool.html">NFL Regular Season</a>
+            </li>
+            <li class="nav-item d-flex align-items-center">
+              <a href="#" onclick="logout()" class="nav-link d-flex align-items-center py-2">
+                <i class="fa-solid fa-arrow-right-from-bracket" style="color: yellow;"></i>&nbsp;&nbsp;Logout
+              </a>
+            </li>
+
+          </ul>
+        </div>
+
+      </div>
+    </nav>
+  </header>
+
+  <script>
+    function logout() {
+      localStorage.removeItem("siteUser");
+      window.location.href = "/login.html";
+    }
+  </script>
+
+  <!-- Main content area (keeps your nfl-background / overlay look) -->
+  <div class="nfl-background">
+    <div class="nfl-overlay text-center">
+      <div class="container sb-wrap">
+
+        <div class="nfl-title mt-0 mb-0">
+          <h1>Super Bowl Squares</h1>
+          
+          <div class="sb-toolbar">
+            <button class="btn nfl-btn" data-toggle="modal" data-target="#sbHowToModal">
+              How it Works
+            </button>
+          </div>
+
+          <div class="submit-picks-highlight d-flex align-items-center justify-content-center mb-0">
+            <i class="fas fa-angle-double-right arrow-icon"></i>
+
+            <button id="sb-refresh" class="btn nfl-btn">Refresh Board</button>
+
+            <i class="fas fa-angle-double-left arrow-icon"></i>
+          </div>
+        </div>
+
+        <section class="nfl-section text-center">
+          
+          
+          <h1 class="mb-0">Claim a Square...</h1>
+          <div id="sb-locked" class="sb-locked-note" style="display:none;">
+              Board Locked - Numbers Set
+          </div>
+
+          <div class="mt-0" style="opacity:0.9;">
+            <div id="sb-help" class="sb-pill sb-help">
+              Tap/click an empty square to claim it. Claimed squares show initials and first name.
+            </div>
+          </div>
+
+            <!-- Quarter legend-->
+            <div id="sb-legend" class="sb-legend mt-2" style="display:none;">
+              <span class="sb-legend-item win-q1">Winner Q1</span>
+              <span class="sb-legend-item win-q2">Winner Q2</span>
+              <span class="sb-legend-item win-q3">Winner Q3</span>
+              <span class="sb-legend-item win-q4">Winner Q4</span>
+            </div>
+
+          <!-- Scoreboard (by quarter) -->
+          <div id="sb-scoreboard" class="sb-scoreboard" style="display:none;">
+            <div class="sb-scoreboard-row">
+              <div class="sb-score-q win-q1">Q1</div>
+              <div class="sb-score-team">
+                <div class="sb-score-label">AFC</div>
+                <div id="sb-q1-afc" class="sb-score-box">—</div>
+              </div>
+              <div class="sb-score-team">
+                <div class="sb-score-label">NFC</div>
+                <div id="sb-q1-nfc" class="sb-score-box">—</div>
+              </div>
+            </div>
+
+            <div class="sb-scoreboard-row">
+              <div class="sb-score-q win-q2">Q2</div>
+              <div class="sb-score-team">
+                <div class="sb-score-label">AFC</div>
+                <div id="sb-q2-afc" class="sb-score-box">—</div>
+              </div>
+              <div class="sb-score-team">
+                <div class="sb-score-label">NFC</div>
+                <div id="sb-q2-nfc" class="sb-score-box">—</div>
+              </div>
+            </div>
+
+            <div class="sb-scoreboard-row">
+              <div class="sb-score-q win-q3">Q3</div>
+              <div class="sb-score-team">
+                <div class="sb-score-label">AFC</div>
+                <div id="sb-q3-afc" class="sb-score-box">—</div>
+              </div>
+              <div class="sb-score-team">
+                <div class="sb-score-label">NFC</div>
+                <div id="sb-q3-nfc" class="sb-score-box">—</div>
+              </div>
+            </div>
+
+            <div class="sb-scoreboard-row">
+              <div class="sb-score-q win-q4">Q4</div>
+              <div class="sb-score-team">
+                <div class="sb-score-label">AFC</div>
+                <div id="sb-q4-afc" class="sb-score-box">—</div>
+              </div>
+              <div class="sb-score-team">
+                <div class="sb-score-label">NFC</div>
+                <div id="sb-q4-nfc" class="sb-score-box">—</div>
+              </div>
+            </div>
+          </div>
+
+          <div id="sb-status" class="sb-status"></div>
+
+          <div class="table-responsive sb scroll">
+            <div id="sb-grid" class="sb-grid" aria-label="Super Bowl Squares grid"></div>
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Claim Modal -->
+  <div class="modal fade" id="sbClaimModal" tabindex="-1" role="dialog" aria-labelledby="sbClaimModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content bg-dark text-white">
+        <div class="modal-header">
+          <h5 class="modal-title" id="sbClaimModalLabel">Claim This Square (cannot be undone)</h5>
+          <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <div class="modal-body text-left">
+          <input type="hidden" id="sbRow">
+          <input type="hidden" id="sbCol">
+
+          <div class="form-group">
+            <label for="sbInitials">Initials (1–4 chars)</label>
+            <input type="text" class="form-control" id="sbInitials" maxlength="4" placeholder="Initials">
+          </div>
+
+          <div class="form-group">
+            <label for="sbName">First Name</label>
+            <input type="text" class="form-control" id="sbName" maxlength="25" placeholder="First Name">
+          </div>
+
+          <div id="sbModalError" class="alert alert-danger" style="display:none;"></div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn nfl-btn" data-dismiss="modal">Cancel</button>
+          <button type="button" id="sbConfirmClaim" class="btn nfl-btn">Confirm Claim</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- How-To Modal -->
+  <div class="modal fade" id="sbHowToModal" tabindex="-1" role="dialog" aria-labelledby="sbHowToModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content bg-dark text-white">
+        <div class="modal-header">
+          <h5 class="modal-title" id="sbHowToModalLabel">How Super Bowl Squares Works</h5>
+          <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <div class="modal-body text-left">
+          <ul>
+            <li>Click an empty square to claim it.</li>
+            <li>Enter your initials (and optional name).</li>
+            <li>Your claim is saved to a Google Sheet so everyone sees the same board.</li>
+            <li>If you don’t see your claim right away, hit “Refresh Board”.</li>
+          </ul>
+          <p class="mb-0"><small>Numbers (0–9) can be added later if you want. This version focuses on claiming squares.</small></p>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn nfl-btn" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer (same style as nflpool) -->
+  <footer class="footer-full text-white bg-dark py-2">
+    <div class="text-center">
+      <span class="footer-title">
+        &copy;
+        <a href="https://www.jchleborad.com/project605" target="_blank" class="text-white text-decoration-none font-weight-bold">
+          Project605&trade;
+        </a>
+        2025 Super Bowl Squares
+      </span>
+      <br>
+      <span class="created-footer-text">Website Created by</span>
+      <a href="https://www.jchleborad.com" target="_blank">
+        <img src="/assets/images/logo-jchleborad.png" alt="JChleborad.com Logo" class="logo-chleb-footer">
+      </a>
+    </div>
+  </footer>
+
+  <script>
+    // ===== Super Bowl Squares (Google Sheets via Apps Script) =====
+    const SB_API_URL = "https://script.google.com/macros/s/AKfycbyz1IDIgAtroSFrEVZMbg2uV7FPjChxcoUlZaSqT4isXumqnSXNXVoVhb7futBltHyiTg/exec";
+
+    function setStatus(msg) {
+      document.getElementById("sb-status").innerText = msg || "";
+    }
+
+    async function fetchBoard() {
+      try {
+        setStatus("Loading board...");
+        const res = await fetch(`${SB_API_URL}?action=board`, { method: "GET" });
+        const data = await res.json();
+        if (!data.ok) throw new Error(data.error || "Failed to load board");
+        renderBoard(data);
+        setStatus("");
+      } catch (err) {
+        setStatus("Error loading board. " + err.message);
+      }
+    }
+
+function renderBoard(data) {
+  const board = data.board;
+  const isFull = !!data.isFull;
+  const colNums = (data.numbers && Array.isArray(data.numbers.col)) ? data.numbers.col : Array(10).fill("");
+  const rowNums = (data.numbers && Array.isArray(data.numbers.row)) ? data.numbers.row : Array(10).fill("");
+  // Winners (Q1–Q4) come from Apps Script once numbers exist
+  const winners = data.winners || {};
+  const winQ1 = winners.Q1; // {row, col, afcLast, nfcLast} or null
+  const winQ2 = winners.Q2;
+  const winQ3 = winners.Q3;
+  const winQ4 = winners.Q4;
+    function winnerClassForCell(r, c) {
+    // If multiple quarters land on the same square, we’ll “stack” classes
+    // (CSS can handle it, or you can choose precedence)
+    let cls = "";
+    if (winQ1 && winQ1.row === r && winQ1.col === c) cls += " win-q1";
+    if (winQ2 && winQ2.row === r && winQ2.col === c) cls += " win-q2";
+    if (winQ3 && winQ3.row === r && winQ3.col === c) cls += " win-q3";
+    if (winQ4 && winQ4.row === r && winQ4.col === c) cls += " win-q4";
+    return cls;
+  }
+  const lockedEl = document.getElementById("sb-locked");
+      if (lockedEl) {
+      lockedEl.style.display = (isFull && colNums && rowNums) ? "inline-block" : "none";
+    }
+
+    
+const legendEl = document.getElementById("sb-legend");
+
+const hasAnyWinners =
+  winQ1 || winQ2 || winQ3 || winQ4;
+
+if (legendEl) {
+  legendEl.style.display = hasAnyWinners ? "flex" : "none";
+}
+
+  const grid = document.getElementById("sb-grid");
+  grid.innerHTML = "";
+
+  document.getElementById("sb-help").style.display =
+  isFull ? "none" : "inline-block";
+
+
+  // We render a 12x12 grid:
+  // Row 0: NFC title spans columns 2..11
+  // Row 1: top numbers in columns 2..11
+  // Col 0: AFC title spans rows 2..11
+  // Col 1: left numbers in rows 2..11
+  // Rows 2..11 + Cols 2..11: 10x10 board
+
+  // helper for placing "header boxes" cleanly
+  function addHeaderCell(className, text, r, c, rSpan = 1, cSpan = 1) {
+  const el = document.createElement("div");
+  el.className = className;
+  el.style.gridRow = `${r + 1} / span ${rSpan}`;
+  el.style.gridColumn = `${c + 1} / span ${cSpan}`;
+  el.textContent = text || "";
+  grid.appendChild(el);
+  return el; // <-- add this
+}
+
+// NFC title (top)
+const nfcTitle = addHeaderCell("sb-cell sb-header sb-title-top", "", 0, 2, 1, 10);
+nfcTitle.innerHTML = `
+  <div class="sb-title-bar">
+    <img src="/assets/images/logo-nfc.png" alt="NFC" class="sb-title-logo">
+    <div class="sb-title-text">NFC Champion</div>
+    <img src="/assets/images/logo-nfc.png" alt="NFC" class="sb-title-logo">
+  </div>
+`;
+
+// AFC title (left)
+const afcTitle = addHeaderCell("sb-cell sb-header sb-title-left", "", 2, 0, 10, 1);
+afcTitle.innerHTML = `
+  <div class="sb-title-bar-vertical">
+    <img src="/assets/images/logo-afc.png" alt="AFC" class="sb-title-logo-vert">
+    <div class="sb-title-text-vert">AFC Champion</div>
+    <img src="/assets/images/logo-afc.png" alt="AFC" class="sb-title-logo-vert">
+  </div>
+`;
+
+  // Top numbers
+  for (let c = 0; c < 10; c++) {
+    addHeaderCell("sb-cell sb-header sb-num", isFull ? String(colNums[c]) : "", 1, 2 + c);
+  }
+
+  // Left numbers
+  for (let r = 0; r < 10; r++) {
+    addHeaderCell("sb-cell sb-header sb-num", isFull ? String(rowNums[r]) : "", 2 + r, 1);
+  }
+
+  // Board cells
+  for (let r = 0; r < 10; r++) {
+    for (let c = 0; c < 10; c++) {
+      const cellData = board[r][c] || { initials: "", name: "" };
+
+      const div = document.createElement("div");
+      div.className =
+        "sb-cell" +
+        (cellData.initials ? " claimed" : "") +
+        winnerClassForCell(r, c);
+      div.dataset.row = r;
+      div.dataset.col = c;
+
+      // place into 12x12 grid
+      div.style.gridRow = `${(2 + r) + 1}`;
+      div.style.gridColumn = `${(2 + c) + 1}`;
+
+      const initials = document.createElement("div");
+      initials.className = "sb-initials";
+      initials.textContent = cellData.initials || "";
+      div.appendChild(initials);
+
+      if (cellData.name) {
+        const nm = document.createElement("div");
+        nm.className = "sb-name";
+        nm.textContent = cellData.name;
+        div.appendChild(nm);
+      }
+
+      div.addEventListener("click", () => {
+        if (cellData.initials) return;
+        openClaimModal(r, c);
+      });
+
+      grid.appendChild(div);
+    }
+  }
+}
+
+    function openClaimModal(row, col) {
+      document.getElementById("sbRow").value = row;
+      document.getElementById("sbCol").value = col;
+      document.getElementById("sbInitials").value = "";
+      document.getElementById("sbName").value = "";
+      document.getElementById("sbModalError").style.display = "none";
+      $("#sbClaimModal").modal("show");
+      setTimeout(() => document.getElementById("sbInitials").focus(), 250);
+    }
+
+    function showModalError(msg) {
+      const el = document.getElementById("sbModalError");
+      el.textContent = msg;
+      el.style.display = "block";
+    }
+
+    document.getElementById("sbConfirmClaim").addEventListener("click", async () => {
+      const row = Number(document.getElementById("sbRow").value);
+      const col = Number(document.getElementById("sbCol").value);
+      const initials = (document.getElementById("sbInitials").value || "").trim().toUpperCase();
+      const name = (document.getElementById("sbName").value || "").trim();
+
+      if (!initials || initials.length < 1 || initials.length > 4) {
+        showModalError("Please enter 1–4 characters for initials.");
+        return;
+      }
+
+      try {
+        setStatus("Saving claim...");
+        const form = new URLSearchParams();
+          form.append("action", "claim");
+          form.append("row", row);
+          form.append("col", col);
+          form.append("initials", initials);
+          form.append("name", name);
+
+          const res = await fetch(SB_API_URL, {
+            method: "POST",
+            body: form
+          });
+
+          const data = await res.json();
+
+        if (!data.ok) {
+          showModalError(data.error || "Claim failed.");
+          setStatus("");
+          return;
+        }
+
+        $("#sbClaimModal").modal("hide");
+        setStatus(`Square claimed: (${row + 1}, ${col + 1}) by ${initials}`);
+        await fetchBoard();
+        setTimeout(() => setStatus(""), 2500);
+
+      } catch (err) {
+        showModalError("Error saving claim. " + err.message);
+        setStatus("");
+      }
+    });
+
+    document.getElementById("sb-refresh").addEventListener("click", fetchBoard);
+
+    // Initial load
+    fetchBoard();
+  </script>
+
+</body>
+</html>

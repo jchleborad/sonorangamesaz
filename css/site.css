@@ -91,7 +91,7 @@ body {
 }
 
 .nav-link {
-    font-size: 1.5em !important;
+    font-size: 1.1em !important;
 }
 
 footer {
@@ -335,10 +335,6 @@ img {
   display: inline-block;
   box-shadow: 0 0 8px rgba(0,0,0,0.5);
 }
-
-
-
-
 
 .nfl-title h1 {
   color: #D02131;
@@ -729,6 +725,357 @@ footer .container h4 {
   text-align: center;
 }
 
+/*SUPERBOWL SQUARES*/
+/* Keep everything inside your existing "nfl-" layout */
+    .sb-wrap {
+      max-width: 980px;
+      margin: 0 auto;
+    }
 
+    .sb-toolbar {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin: 10px 0 0 0;
+    }
+
+    /* 10x10 grid */
+.sb-grid {
+  display: grid;
+  grid-template-columns: 90px 56px repeat(10, 62px); /* AFC title | row nums | 10 squares */
+  grid-template-rows: 58px 62px repeat(10, 62px);   /* NFC title | col nums | 10 squares */
+  gap: 6px;
+  margin-top: 6px;
+  user-select: none;
+  min-width: calc(90px + 56px + (10 * 62px) + (11 * 6px));
+}
+
+/* Horizontal scroll wrapper (like nflpool Player Picks) */
+.sb-scroll {
+  -webkit-overflow-scrolling: touch;  /* smooth iOS scrolling */
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+/* Top title (NFC) */
+.sb-title-top {
+  font-family: inherit; /* matches nflpool */
+  font-weight: 900;
+  font-size: 2.1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Left title container (AFC) */
+.sb-title-left {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Number headers */
+.sb-num {
+  font-weight: 900;
+  font-size: 1.6rem;
+  color: #fff;
+  text-shadow:
+    0 1px 2px rgba(0,0,0,0.9),
+    0 0 6px rgba(0,0,0,0.6);
+}
+
+    .sb-cell {
+      border: 1px solid rgba(255,255,255,0.25);
+      border-radius: 8px;
+      min-height: 62px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      background: rgba(0,0,0,0.50);
+      transition: transform 0.06s ease-in-out, background 0.12s ease-in-out;
+      padding: 6px;
+      text-align: center;
+    }
+
+    .sb-cell:hover {
+      transform: translateY(-1px);
+      background: rgba(255,255,255,0.08);
+    }
+
+    .sb-header {
+      pointer-events: none;
+    }
+
+    .sb-cell.claimed {
+      cursor: not-allowed;
+      background: rgba(0,0,0,0.65);
+      border-color: rgba(255,255,0,0.30);
+    }
+
+    .sb-initials {
+      font-size: 1.15rem;
+      font-weight: 900;
+      letter-spacing: 1px;
+      color: #fff;
+      text-shadow: 
+        0 1px 2px rgba(0,0,0,0.9),
+        0 0 6px rgba(0,0,0,0.6);
+    }
+
+    .sb-name {
+      margin-top: 3px;
+      padding: 2px 6px;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 0.4px;
+      text-transform: lowercase;
+      color: #fff;
+      background: rgba(0,0,0,0.35);
+      line-height: 1.1;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.85);
+    }
+
+    .sb-status {
+      margin-top: 10px;
+      font-size: 0.95rem;
+      opacity: 0.95;
+      min-height: 22px;
+    }
+
+    #sb-status:empty {
+      display: none;
+    }
+
+    /* Make grid usable on phones */
+    @media (max-width: 575.98px) {
+      .sb-grid { gap: 4px; }
+      .sb-cell { min-height: 52px; border-radius: 7px; }
+      .sb-initials { font-size: 0.95rem; }
+      .sb-name { font-size: 0.72rem; }
+    }
+
+/* Header cells (top row & left col) */
+.sb-header {
+  cursor: default;
+  font-weight: 900;
+  border-color: rgba(255,255,255,0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+/* Numbers override */
+.sb-header.sb-num {
+  font-weight: 900;
+  font-size: 1.6rem;
+  background: rgba(0,0,0,0.58);
+  border-bottom: 3px solid rgba(0,0,0,0.45);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.08);
+}
+
+/* Titles override */
+.sb-header.sb-title-top {
+  font-weight: 900;
+  font-size: 2rem;
+}
+
+.sb-header.sb-title-left {
+  font-weight: 900;
+  font-size: 2.4rem;
+}
+
+/* Special top-left corner that holds both labels */
+.sb-corner {
+  position: relative;
+  overflow: hidden;
+}
+
+.sb-header-top {
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  right: 6px;
+  text-align: center;
+  font-size: 0.85rem;
+  font-weight: 800;
+  opacity: 0.95;
+}
+
+.sb-header-left {
+  position: absolute;
+  left: 6px;
+  top: 50%;
+  transform: translateY(-50%) rotate(-90deg);
+  transform-origin: left center;
+  font-size: 0.85rem;
+  font-weight: 800;
+  opacity: 0.95;
+  white-space: nowrap;
+}
+
+/* ===== Super Bowl Squares Titles ===== */
+
+/* Shared title bar */
+.sb-title-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  width: 100%;
+}
+
+/* NFC Champion text ONLY */
+.sb-title-text {
+  color:#013369;
+  font-family: 'Comfortaa', sans-serif;
+  font-weight: 900;
+  font-size: 2.2rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-shadow: 
+    -2px -2px 0 white,
+     2px -2px 0 white,
+    -2px  2px 0 white,
+     2px  2px 0 white;
+  margin-bottom: 0rem;
+}
+
+/* Logos */
+.sb-title-logo {
+  height: 42px;
+}
+
+.sb-title-logo-vert {
+  width: 42px;
+}
+
+/* Vertical title content */
+.sb-title-bar-vertical {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+
+/* Rotated AFC Champion text ONLY */
+.sb-title-text-vert {
+  color:#D02131;
+  font-family: 'Comfortaa', sans-serif;
+  font-weight: 900;
+  font-size: 2.2rem;
+  letter-spacing: 1px;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  text-transform: uppercase;
+  text-shadow: 
+    -2px -2px 0 white,
+     2px -2px 0 white,
+    -2px  2px 0 white,
+     2px  2px 0 white;
+  margin-bottom: 0rem;
+}
+
+/*Grid Locked Note*/
+.sb-locked-note{
+  margin-top: 10px;
+  text-align: center;
+  font-weight: 800;
+  letter-spacing: .6px;
+  text-transform: uppercase;
+  font-size: .9rem;
+
+  /* subtle, readable over stadium */
+  color: rgba(255,255,255,0.92);
+  text-shadow: 0 1px 2px rgba(0,0,0,0.85);
+
+  /* light “badge” feel */
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 10px;
+  background: rgba(0,0,0,0.30);
+  border: 1px solid rgba(255,255,255,0.20);
+}
+
+/*Helper text under Grid*/
+/* Shared pill style (used for status + help) */
+.sb-pill {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: rgba(0,0,0,0.55);
+  color: #fff;
+  font-weight: 800;
+  letter-spacing: 0.4px;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.85);
+}
+
+/* Help text variation */
+.sb-help {
+  font-size: 0.9rem;
+  opacity: 0.95;
+}
+
+/* Locked message (already exists, shown for clarity) */
+.sb-locked {
+  font-size: 0.95rem;
+}
+
+/* ===== Winner highlights (Q1–Q4) ===== */
+.sb-cell.win-q1 { box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.85) inset; }
+.sb-cell.win-q2 { box-shadow: 0 0 0 3px rgba(0, 200, 255, 0.85) inset; }
+.sb-cell.win-q3 { box-shadow: 0 0 0 3px rgba(140, 255, 140, 0.85) inset; }
+.sb-cell.win-q4 { box-shadow: 0 0 0 3px rgba(255, 120, 220, 0.85) inset; }
+
+/* If the winning square is also "claimed", give it a tiny extra pop */
+.sb-cell.claimed.win-q1,
+.sb-cell.claimed.win-q2,
+.sb-cell.claimed.win-q3,
+.sb-cell.claimed.win-q4 {
+  filter: brightness(1.05);
+}
+
+.sb-winner-q1 { box-shadow: 0 0 0 3px #00c853 inset; }
+.sb-winner-q2 { box-shadow: 0 0 0 3px #2979ff inset; }
+.sb-winner-q3 { box-shadow: 0 0 0 3px #ffab00 inset; }
+.sb-winner-q4 { box-shadow: 0 0 0 3px #d50000 inset; }
+
+.sb-legend {
+  margin: 14px auto 6px;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.sb-legend-item {
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  color: #fff;
+  background: rgba(0,0,0,0.55);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.15);
+  text-shadow: 0 1px 2px rgba(0,0,0,0.9);
+}
+
+/* Match EXACT winner colors */
+.sb-legend-item.win-q1 { border-left: 6px solid rgba(255,215,0,0.9); }
+.sb-legend-item.win-q2 { border-left: 6px solid rgba(0,200,255,0.9); }
+.sb-legend-item.win-q3 { border-left: 6px solid rgba(140,255,140,0.9); }
+.sb-legend-item.win-q4 { border-left: 6px solid rgba(255,120,220,0.9); }
+
+/* Mobile tweak */
+@media (max-width: 575px) {
+  .sb-legend-item {
+    font-size: 0.8rem;
+    padding: 6px 12px;
+  }
+}
 
 
