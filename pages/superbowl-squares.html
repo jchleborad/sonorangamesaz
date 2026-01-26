@@ -110,85 +110,83 @@
           </div>
         </div>
 
-        <section class="nfl-section text-center">
-          
-          
-          <h1 class="mb-0">Claim a Square...</h1>
-          <div id="sb-locked" class="sb-locked-note" style="display:none;">
-              Board Locked - Numbers Set
+      <section class="nfl-section text-center">
+        <h1 class="mb-0">Claim a Square...</h1>
+        <div id="sb-locked" class="sb-locked-note" style="display:none;">
+            Board Locked - Numbers Set
+        </div>
+
+        <div class="mt-0" style="opacity:0.9;">
+          <div id="sb-help" class="sb-pill sb-help">
+            Tap/click an empty square to claim it. Claimed squares show initials and first name.
+          </div>
+        </div>
+
+          <!-- Quarter legend-->
+          <div id="sb-legend" class="sb-legend mt-2" style="display:none;">
+            <span class="sb-legend-item win-q1">Winner Q1</span>
+            <span class="sb-legend-item win-q2">Winner Q2</span>
+            <span class="sb-legend-item win-q3">Winner Q3</span>
+            <span class="sb-legend-item win-q4">Winner Q4</span>
           </div>
 
-          <div class="mt-0" style="opacity:0.9;">
-            <div id="sb-help" class="sb-pill sb-help">
-              Tap/click an empty square to claim it. Claimed squares show initials and first name.
+        <!-- Scoreboard (by quarter) -->
+        <div id="sb-scoreboard" class="sb-scoreboard" style="display:none;">
+          <div class="sb-scoreboard-row">
+            <div class="sb-score-q win-q1">Q1</div>
+            <div class="sb-score-team">
+              <div class="sb-score-label">AFC</div>
+              <div id="sb-q1-afc" class="sb-score-box">—</div>
             </div>
-          </div>
-
-            <!-- Quarter legend-->
-            <div id="sb-legend" class="sb-legend mt-2" style="display:none;">
-              <span class="sb-legend-item win-q1">Winner Q1</span>
-              <span class="sb-legend-item win-q2">Winner Q2</span>
-              <span class="sb-legend-item win-q3">Winner Q3</span>
-              <span class="sb-legend-item win-q4">Winner Q4</span>
-            </div>
-
-          <!-- Scoreboard (by quarter) -->
-          <div id="sb-scoreboard" class="sb-scoreboard" style="display:none;">
-            <div class="sb-scoreboard-row">
-              <div class="sb-score-q win-q1">Q1</div>
-              <div class="sb-score-team">
-                <div class="sb-score-label">AFC</div>
-                <div id="sb-q1-afc" class="sb-score-box">—</div>
-              </div>
-              <div class="sb-score-team">
-                <div class="sb-score-label">NFC</div>
-                <div id="sb-q1-nfc" class="sb-score-box">—</div>
-              </div>
-            </div>
-
-            <div class="sb-scoreboard-row">
-              <div class="sb-score-q win-q2">Q2</div>
-              <div class="sb-score-team">
-                <div class="sb-score-label">AFC</div>
-                <div id="sb-q2-afc" class="sb-score-box">—</div>
-              </div>
-              <div class="sb-score-team">
-                <div class="sb-score-label">NFC</div>
-                <div id="sb-q2-nfc" class="sb-score-box">—</div>
-              </div>
-            </div>
-
-            <div class="sb-scoreboard-row">
-              <div class="sb-score-q win-q3">Q3</div>
-              <div class="sb-score-team">
-                <div class="sb-score-label">AFC</div>
-                <div id="sb-q3-afc" class="sb-score-box">—</div>
-              </div>
-              <div class="sb-score-team">
-                <div class="sb-score-label">NFC</div>
-                <div id="sb-q3-nfc" class="sb-score-box">—</div>
-              </div>
-            </div>
-
-            <div class="sb-scoreboard-row">
-              <div class="sb-score-q win-q4">Q4</div>
-              <div class="sb-score-team">
-                <div class="sb-score-label">AFC</div>
-                <div id="sb-q4-afc" class="sb-score-box">—</div>
-              </div>
-              <div class="sb-score-team">
-                <div class="sb-score-label">NFC</div>
-                <div id="sb-q4-nfc" class="sb-score-box">—</div>
-              </div>
+            <div class="sb-score-team">
+              <div class="sb-score-label">NFC</div>
+              <div id="sb-q1-nfc" class="sb-score-box">—</div>
             </div>
           </div>
 
-          <div id="sb-status" class="sb-status"></div>
-
-          <div class="table-responsive sb scroll">
-            <div id="sb-grid" class="sb-grid" aria-label="Super Bowl Squares grid"></div>
+          <div class="sb-scoreboard-row">
+            <div class="sb-score-q win-q2">Q2</div>
+            <div class="sb-score-team">
+              <div class="sb-score-label">AFC</div>
+              <div id="sb-q2-afc" class="sb-score-box">—</div>
+            </div>
+            <div class="sb-score-team">
+              <div class="sb-score-label">NFC</div>
+              <div id="sb-q2-nfc" class="sb-score-box">—</div>
+            </div>
           </div>
-        </section>
+
+          <div class="sb-scoreboard-row">
+            <div class="sb-score-q win-q3">Q3</div>
+            <div class="sb-score-team">
+              <div class="sb-score-label">AFC</div>
+              <div id="sb-q3-afc" class="sb-score-box">—</div>
+            </div>
+            <div class="sb-score-team">
+              <div class="sb-score-label">NFC</div>
+              <div id="sb-q3-nfc" class="sb-score-box">—</div>
+            </div>
+          </div>
+
+          <div class="sb-scoreboard-row">
+            <div class="sb-score-q win-q4">Q4</div>
+            <div class="sb-score-team">
+              <div class="sb-score-label">AFC</div>
+              <div id="sb-q4-afc" class="sb-score-box">—</div>
+            </div>
+            <div class="sb-score-team">
+              <div class="sb-score-label">NFC</div>
+              <div id="sb-q4-nfc" class="sb-score-box">—</div>
+            </div>
+          </div>
+        </div>
+
+        <div id="sb-status" class="sb-status"></div>
+
+        <div class="table-responsive sb scroll">
+          <div id="sb-grid" class="sb-grid" aria-label="Super Bowl Squares grid"></div>
+        </div>
+      </section>
 
       </div>
     </div>
@@ -363,7 +361,7 @@ const nfcTitle = addHeaderCell("sb-cell sb-header sb-title-top", "", 0, 2, 1, 10
 nfcTitle.innerHTML = `
   <div class="sb-title-bar">
     <img src="/assets/images/logo-nfc.png" alt="NFC" class="sb-title-logo">
-    <div class="sb-title-text">NFC Champion</div>
+    <div class="sb-title-text">Seattle Seahawks</div>
     <img src="/assets/images/logo-nfc.png" alt="NFC" class="sb-title-logo">
   </div>
 `;
@@ -373,7 +371,7 @@ const afcTitle = addHeaderCell("sb-cell sb-header sb-title-left", "", 2, 0, 10, 
 afcTitle.innerHTML = `
   <div class="sb-title-bar-vertical">
     <img src="/assets/images/logo-afc.png" alt="AFC" class="sb-title-logo-vert">
-    <div class="sb-title-text-vert">AFC Champion</div>
+    <div class="sb-title-text-vert">New England Patriots</div>
     <img src="/assets/images/logo-afc.png" alt="AFC" class="sb-title-logo-vert">
   </div>
 `;
