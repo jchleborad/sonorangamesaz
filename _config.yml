@@ -1,5 +1,5 @@
-title: Sonoran Games AZ
+title: Sonoran Games
 description: Home of the NFL Pool and more!
-url: ""  # Leave blank for local dev, update later for GitHub Pages
-baseurl: ""  # No subdirectory if using root
+url: "" # Leave blank for local dev, update later for GitHub Pages
+baseurl: "" # No subdirectory if using root
 
