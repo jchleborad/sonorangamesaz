@@ -286,11 +286,6 @@ img {
   color: black;
 }
 
-.nfl-background {
-  background: url('/assets/images/nfl-staduim.jpg') no-repeat center center fixed;
-  background-size: cover;
-}
-
 .nfl-btn {
   background-color: #013369; /* NFL Blue */
   border: 2px solid #D02131; /* NFL Red */
@@ -361,7 +356,7 @@ img {
 
 .nfl-background {
   min-height: 100vh;
-  background: url('/assets/images/nfl-storm.jpg') no-repeat center center fixed;
+  background: url('/assets/images/nfl-stadium-bg.jpg') no-repeat center center fixed;
   background-size: cover;
   display: flex;
   flex-direction: column;

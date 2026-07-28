@@ -1,5 +1,5 @@
 ✅ Recommended Folder & File Setup
-/Chleborad/SonoranGamesAZ/
+/Chleborad/SonoranGames/
 ├── _includes/               # Reusable HTML components (e.g. navbar.html, footer.html)
 ├── _layouts/
 │   └── default.html         # Base HTML template
@@ -7,7 +7,7 @@
 ├── _site/                   # Generated site output (auto)
 ├── assets/
 │   └── images/
-│   └── SonoranGamesAZ-color-palette.txt
+│   └── SonoranGames-color-palette.txt
 ├── css/
 │   └── site.css             # Global styles
 ├── pages/                   # 💡 Your new section for content pages
