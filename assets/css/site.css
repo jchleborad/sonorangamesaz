@@ -66,6 +66,10 @@
 .team-row { display: grid; grid-template-columns: 38px minmax(0, 1fr) auto; align-items: center; gap: 11px; margin-top: 14px; }
 .team-name strong { display: block; font-size: .88rem; }
 .team-name span { color: var(--muted); font-size: .7rem; }
+.team-name-line { display: flex; flex-wrap: wrap; align-items: center; gap: 7px; }
+.possession-indicator { display: inline-flex; align-items: center; gap: 4px; padding: 3px 6px; border: 1px solid rgba(181,89,58,.28); border-radius: 999px; background: rgba(181,89,58,.08); color: var(--copper) !important; font-size: .55rem !important; font-weight: 800; letter-spacing: .06em; line-height: 1; text-transform: uppercase; }
+.possession-football { position: relative; display: inline-block; width: 11px; height: 7px; border-radius: 50%; background: currentColor; transform: rotate(-18deg); }
+.possession-football::after { position: absolute; top: 3px; left: 3px; width: 5px; height: 1px; background: var(--white); content: ''; }
 .team-score { font: 800 2.3rem/1 var(--font-display); }
 .team-row.winner .team-name strong::after { margin-left: 6px; color: var(--success); font-size: .62rem; content: 'WINNER'; }
 .game-detail { margin: 15px 0 0; padding-top: 13px; border-top: 1px solid var(--border); color: var(--muted); font-size: .72rem; }
