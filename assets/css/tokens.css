@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --navy: #18243a;
+  --navy-2: #22324e;
+  --sand: #e8d9c2;
+  --linen: #f4ecdf;
+  --desert-linen: #dcc9ae;
+  --copper: #b85c38;
+  --coral: #d9785d;
+  --rose: #b95f72;
+  --gold: #d5a23f;
+  --dusk: #51677e;
+  --ink: #202a3a;
+  --muted: #6a6d70;
+  --white: #fffdf9;
+  --success: #36775d;
+  --danger: #a34343;
+  --border: rgba(24, 36, 58, .13);
+  --shadow: 0 16px 40px rgba(24, 36, 58, .10);
+  --shadow-small: 0 7px 20px rgba(24, 36, 58, .08);
+  --radius: 18px;
+  --radius-small: 12px;
+  --max-width: 1180px;
+  --font-body: 'Manrope', sans-serif;
+  --font-display: 'Barlow Condensed', sans-serif;
+}
