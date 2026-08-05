@@ -30,13 +30,13 @@
           <p class="results-intro">See how the week finished, then zoom out to follow the season-long race.</p>
         </div>
         <div class="results-tabs" role="tablist" aria-label="Standings views">
-          <button class="results-tab is-active" type="button" role="tab" aria-selected="true">Weekly Results</button>
-          <button class="results-tab" type="button" role="tab" aria-selected="false" data-season-preview>Season Standings</button>
+          <button class="results-tab is-active" id="weekly-results-tab" type="button" role="tab" aria-selected="true" aria-controls="weekly-results-panel" data-standings-tab="weekly">Weekly Results</button>
+          <button class="results-tab" id="season-standings-tab" type="button" role="tab" aria-selected="false" aria-controls="season-standings-panel" data-standings-tab="season">Season Standings</button>
         </div>
       </div>
     </section>
 
-    <div class="container results-layout">
+    <div class="container results-layout" id="weekly-results-panel" role="tabpanel" aria-labelledby="weekly-results-tab" data-standings-panel="weekly">
       <section class="results-toolbar" aria-label="Select results week">
         <div>
           <p class="eyebrow">Completed week</p>
@@ -71,7 +71,8 @@
             <div><p class="eyebrow">Final leaderboard</p><h2 class="display">How everyone finished</h2></div>
             <span class="status status-final">Final</span>
           </div>
-          <div class="table-scroll">
+          <p class="table-scroll-cue" data-table-scroll-cue hidden></p>
+          <div class="table-scroll" data-weekly-table-scroll>
             <table class="weekly-table">
               <thead><tr><th>Rank</th><th>Player</th><th>Correct</th><th>Wrong</th><th>Tiebreaker</th><th>Difference</th></tr></thead>
               <tbody>
@@ -132,9 +133,88 @@
         <div class="week-stat"><strong>2</strong><span>Top-score tie</span></div>
       </section>
     </div>
+
+    <div class="container results-layout season-layout" id="season-standings-panel" role="tabpanel" aria-labelledby="season-standings-tab" data-standings-panel="season" hidden>
+      <section class="results-toolbar season-toolbar">
+        <div>
+          <p class="eyebrow">Through Week 6</p>
+          <h2 class="display">2026 Season Standings</h2>
+          <p>Six completed weeks · Rankings updated after Monday Night Football</p>
+        </div>
+        <span class="status status-final">Current</span>
+      </section>
+
+      <section class="card season-leader">
+        <div class="winner-emblem" aria-hidden="true">★</div>
+        <div class="season-leader-copy">
+          <p class="eyebrow">Current season leader</p>
+          <h2 class="display">John C.</h2>
+          <p class="winner-lead">98.9 season points</p>
+          <p>John’s two weekly wins and 68 correct picks give him the strongest combined score through Week 6.</p>
+        </div>
+        <div class="winner-numbers season-leader-numbers" aria-label="Leader's season performance">
+          <div><span>Weekly wins</span><strong>2</strong><small>60% weight</small></div>
+          <div><span>Correct picks</span><strong>68</strong><small>40% weight</small></div>
+          <div><span>Rank change</span><strong>↑ 1</strong><small>from Week 5</small></div>
+        </div>
+      </section>
+
+      <section class="card formula-card" aria-labelledby="formula-title">
+        <div>
+          <p class="eyebrow">How the standings work</p>
+          <h2 class="display" id="formula-title">Win weeks. Pick consistently.</h2>
+          <p>The season score rewards both kinds of success. Each player’s weekly wins are compared with the season leader for 60 points, and correct picks are compared with the most correct for 40 points.</p>
+        </div>
+        <div class="formula-bar" aria-label="Season score is 60 percent weekly wins and 40 percent total correct picks">
+          <span class="formula-wins">60% Weekly Wins</span><span class="formula-correct">40% Correct Picks</span>
+        </div>
+      </section>
+
+      <section class="card results-table-card season-table-card">
+        <div class="section-heading results-heading">
+          <div><p class="eyebrow">Overall leaderboard</p><h2 class="display">The race for the season</h2></div>
+          <span class="status status-final">Week 6</span>
+        </div>
+        <div class="table-scroll">
+          <table class="weekly-table season-table">
+            <thead><tr><th>Rank</th><th>Player</th><th>Move</th><th>Weekly Wins</th><th>Correct</th><th>Wrong</th><th>Win %</th><th>Season Score</th></tr></thead>
+            <tbody>
+              <tr class="weekly-first"><td><span class="rank-medal">1</span></td><td><strong>John C.</strong><small>2 weekly championships</small></td><td class="rank-up">↑ 1</td><td>2</td><td>68</td><td>22</td><td>75.6%</td><td><strong>98.9</strong></td></tr>
+              <tr><td>2</td><td><strong>Tom S.</strong><small>Week 6 champion</small></td><td class="rank-up">↑ 2</td><td>2</td><td>66</td><td>24</td><td>73.3%</td><td><strong>97.7</strong></td></tr>
+              <tr><td>3</td><td><strong>Cindy C.</strong></td><td class="rank-down">↓ 2</td><td>2</td><td>64</td><td>26</td><td>71.1%</td><td><strong>96.6</strong></td></tr>
+              <tr><td>4</td><td><strong>Bill M.</strong></td><td class="rank-even">—</td><td>1</td><td>70</td><td>20</td><td>77.8%</td><td><strong>70.0</strong></td></tr>
+              <tr><td>5</td><td><strong>Victor R.</strong></td><td class="rank-up">↑ 1</td><td>1</td><td>67</td><td>23</td><td>74.4%</td><td><strong>68.3</strong></td></tr>
+              <tr><td>6</td><td><strong>Tyler C.</strong></td><td class="rank-down">↓ 1</td><td>1</td><td>65</td><td>25</td><td>72.2%</td><td><strong>67.1</strong></td></tr>
+              <tr><td>7</td><td><strong>Dave R.</strong></td><td class="rank-up">↑ 2</td><td>1</td><td>62</td><td>28</td><td>68.9%</td><td><strong>65.4</strong></td></tr>
+              <tr><td>8</td><td><strong>Mary P.</strong></td><td class="rank-down">↓ 1</td><td>0</td><td>69</td><td>21</td><td>76.7%</td><td><strong>39.4</strong></td></tr>
+              <tr><td>9</td><td><strong>Steve B.</strong></td><td class="rank-up">↑ 1</td><td>0</td><td>66</td><td>24</td><td>73.3%</td><td><strong>37.7</strong></td></tr>
+              <tr><td>10</td><td><strong>Mike D.</strong></td><td class="rank-down">↓ 2</td><td>0</td><td>65</td><td>25</td><td>72.2%</td><td><strong>37.1</strong></td></tr>
+              <tr><td>11</td><td><strong>Chris H.</strong></td><td class="rank-even">—</td><td>0</td><td>63</td><td>27</td><td>70.0%</td><td><strong>36.0</strong></td></tr>
+              <tr><td>12</td><td><strong>Jim K.</strong></td><td class="rank-up">↑ 2</td><td>0</td><td>61</td><td>29</td><td>67.8%</td><td><strong>34.9</strong></td></tr>
+              <tr><td>13</td><td><strong>Dan L.</strong></td><td class="rank-even">—</td><td>0</td><td>60</td><td>30</td><td>66.7%</td><td><strong>34.3</strong></td></tr>
+              <tr><td>14</td><td><strong>Rick N.</strong></td><td class="rank-down">↓ 2</td><td>0</td><td>59</td><td>31</td><td>65.6%</td><td><strong>33.7</strong></td></tr>
+              <tr><td>15</td><td><strong>Lisa G.</strong></td><td class="rank-up">↑ 1</td><td>0</td><td>58</td><td>32</td><td>64.4%</td><td><strong>33.1</strong></td></tr>
+              <tr><td>16</td><td><strong>Mark T.</strong></td><td class="rank-down">↓ 1</td><td>0</td><td>57</td><td>33</td><td>63.3%</td><td><strong>32.6</strong></td></tr>
+              <tr><td>17</td><td><strong>Susan W.</strong></td><td class="rank-even">—</td><td>0</td><td>55</td><td>35</td><td>61.1%</td><td><strong>31.4</strong></td></tr>
+              <tr><td>18</td><td><strong>Bob A.</strong></td><td class="rank-even">—</td><td>0</td><td>53</td><td>37</td><td>58.9%</td><td><strong>30.3</strong></td></tr>
+              <tr><td>19</td><td><strong>Julie F.</strong></td><td class="rank-up">↑ 1</td><td>0</td><td>50</td><td>40</td><td>55.6%</td><td><strong>28.6</strong></td></tr>
+              <tr><td>20</td><td><strong>Paul J.</strong></td><td class="rank-down">↓ 1</td><td>0</td><td>48</td><td>42</td><td>53.3%</td><td><strong>27.4</strong></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="table-note">Season Score = 60 × (weekly wins ÷ most weekly wins) + 40 × (correct picks ÷ most correct picks). Scores are rounded to one decimal. Tied scores are ordered by total correct picks.</p>
+      </section>
+
+      <section class="card week-story season-snapshot">
+        <div><p class="eyebrow">Season snapshot</p><h2 class="display">Through six weeks</h2></div>
+        <div class="week-stat"><strong>3</strong><span>Multi-week winners</span></div>
+        <div class="week-stat"><strong>70</strong><span>Most correct</span></div>
+        <div class="week-stat"><strong>12</strong><span>Weeks remaining</span></div>
+        <div class="week-stat"><strong>2.3</strong><span>Top-3 spread</span></div>
+      </section>
+    </div>
   </main>
 
-  <div class="season-preview-toast" data-season-toast role="status" hidden>Season Standings is the next view we’ll build.</div>
   <footer class="site-footer"><div class="container footer-inner"><a class="brand" href="/"><span class="brand-mark">SG</span><span class="brand-name">Sonoran Games</span></a><p>Friendly competition, beautifully organized. · Prototype data</p></div></footer>
   <script src="/assets/js/navigation.js"></script>
   <script src="/assets/js/standings.js"></script>
