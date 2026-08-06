@@ -367,3 +367,88 @@
   .week-story { grid-template-columns: repeat(2,1fr); }
   .week-stat:nth-of-type(odd) { border-left: 0; }
 }
+
+/* Winners */
+.winners-main { min-height: 70vh; }
+.winners-hero { position: relative; overflow: hidden; padding: 46px 0 92px; background: var(--navy); color: var(--white); }
+.winners-hero::after { position: absolute; right: -70px; bottom: -155px; width: 390px; height: 390px; border: 42px double rgba(213,162,63,.08); border-radius: 50%; content: ''; }
+.winners-hero-row { position: relative; z-index: 1; display: flex; align-items: center; justify-content: space-between; gap: 32px; }
+.winners-title { max-width: 760px; font-size: clamp(3rem, 7vw, 5.5rem); line-height: .87; }
+.winners-intro { max-width: 680px; margin: 15px 0 0; color: var(--sand); line-height: 1.65; }
+.trophy-seal { display: grid; width: 132px; height: 132px; place-items: center; align-content: center; flex: 0 0 auto; border: 2px solid rgba(232,217,194,.35); border-radius: 50%; background: radial-gradient(circle, rgba(213,162,63,.17), transparent 68%); box-shadow: inset 0 0 0 8px rgba(255,255,255,.035); text-align: center; }
+.trophy-seal span { color: var(--gold); font-size: 1.3rem; line-height: 1; }
+.trophy-seal strong { margin: 4px 0 1px; font: 800 2.4rem/1 var(--font-display); }
+.trophy-seal small { color: var(--sand); font-size: .55rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+.winners-layout { position: relative; z-index: 2; display: grid; gap: 28px; margin-top: -43px; }
+.reigning-champion { position: relative; display: grid; grid-template-columns: auto minmax(0,1fr) minmax(330px,.75fr); align-items: center; gap: 24px; overflow: hidden; padding: 29px; border-top: 5px solid var(--gold); background: linear-gradient(120deg, var(--white) 0 62%, rgba(241,223,186,.66)); }
+.reigning-champion::after { position: absolute; top: -70px; right: -55px; width: 210px; height: 210px; border: 24px double rgba(184,92,56,.06); border-radius: 50%; content: ''; }
+.reigning-copy { position: relative; z-index: 1; }
+.reigning-copy h2 { margin-top: 4px; font-size: 3rem; line-height: .9; }
+.reigning-copy .winner-lead { margin: 8px 0 4px; color: var(--copper); font-size: .9rem; font-weight: 800; }
+.reigning-copy p:last-child { max-width: 550px; margin: 0; color: var(--muted); font-size: .78rem; line-height: 1.55; }
+.champions-section { display: grid; gap: 17px; }
+.winners-section-heading { display: flex; align-items: end; justify-content: space-between; gap: 20px; }
+.winners-section-heading h2 { font-size: 2.25rem; line-height: 1; }
+.winners-section-heading p:last-child { margin: 6px 0 0; color: var(--muted); font-size: .78rem; }
+.champions-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 15px; }
+.champion-tile { position: relative; overflow: hidden; min-height: 205px; padding: 21px; transition: transform .18s ease, box-shadow .18s ease; }
+.champion-tile:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+.champion-tile::after { position: absolute; right: -33px; bottom: -42px; width: 112px; height: 112px; border: 17px double rgba(24,36,58,.045); border-radius: 50%; content: ''; }
+.champion-week { color: var(--copper); font-size: .66rem; font-weight: 900; letter-spacing: .1em; text-transform: uppercase; }
+.champion-medal { display: grid; width: 38px; height: 38px; margin: 17px 0 13px; place-items: center; border-radius: 50%; background: var(--linen); color: var(--copper); font: 800 1rem var(--font-display); }
+.champion-tile h3 { margin: 0; font: 800 1.85rem/1 var(--font-display); text-transform: uppercase; }
+.champion-tile p { margin: 6px 0 3px; color: var(--ink); font-size: .78rem; font-weight: 800; }
+.champion-tile small { color: var(--muted); font-size: .64rem; }
+.champion-tile.is-reigning { border-color: rgba(213,162,63,.55); border-top: 4px solid var(--gold); background: linear-gradient(145deg, var(--white), rgba(241,223,186,.5)); }
+.champion-tile.is-reigning .champion-medal { background: linear-gradient(145deg,#f1dfba,#c98542); color: var(--navy); }
+.winners-lower-grid { display: grid; grid-template-columns: minmax(0,1.35fr) minmax(300px,.65fr); gap: 22px; }
+.title-race, .winners-records, .season-archive { padding: 24px; }
+.winners-section-heading.compact { align-items: center; }
+.title-race-list { display: grid; margin-top: 19px; border-top: 1px solid var(--border); }
+.title-race-row { display: grid; grid-template-columns: 36px minmax(0,1fr) auto; align-items: center; gap: 12px; padding: 15px 8px; border-bottom: 1px solid var(--border); }
+.title-race-row.is-leading { background: rgba(232,217,194,.23); }
+.race-rank { color: var(--copper); font: 800 1.2rem var(--font-display); text-align: center; }
+.title-race-row div { display: grid; }
+.title-race-row strong { font-size: .83rem; }
+.title-race-row small { margin-top: 2px; color: var(--muted); font-size: .62rem; }
+.title-race-row b { font: 800 1.35rem var(--font-display); }
+.winners-records h2 { margin-top: 3px; font-size: 1.85rem; }
+.records-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 10px; margin-top: 18px; }
+.records-grid div { padding: 16px 10px; border-radius: 12px; background: var(--linen); text-align: center; }
+.records-grid strong, .records-grid span { display: block; }
+.records-grid strong { font: 800 1.8rem/1 var(--font-display); }
+.records-grid span { margin-top: 5px; color: var(--muted); font-size: .6rem; font-weight: 800; text-transform: uppercase; }
+.season-archive { display: grid; grid-template-columns: minmax(0,1fr) minmax(360px,.8fr); align-items: center; gap: 30px; margin-bottom: 22px; }
+.season-archive h2 { margin-top: 3px; font-size: 2rem; }
+.season-archive > div:first-child p:last-child { max-width: 650px; margin: 7px 0 0; color: var(--muted); font-size: .75rem; line-height: 1.55; }
+.archive-year-card { display: grid; grid-template-columns: auto minmax(0,1fr) auto; align-items: center; gap: 14px; padding: 16px; border: 1px solid var(--border); border-radius: 13px; background: var(--linen); }
+.archive-year-card > span:first-child { display: grid; width: 53px; height: 53px; place-items: center; border-radius: 12px; background: var(--navy); color: var(--white); font: 800 1rem var(--font-display); }
+.archive-year-card div { display: grid; }
+.archive-year-card strong { font-size: .78rem; }
+.archive-year-card small { margin-top: 3px; color: var(--muted); font-size: .63rem; }
+@media (max-width: 900px) {
+  .reigning-champion { grid-template-columns: auto 1fr; }
+  .reigning-champion .winner-numbers { grid-column: 1 / -1; }
+  .champions-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .winners-lower-grid { grid-template-columns: 1fr; }
+  .season-archive { grid-template-columns: 1fr; gap: 18px; }
+}
+@media (max-width: 700px) {
+  .winners-hero { padding-bottom: 76px; }
+  .winners-hero-row { align-items: flex-start; flex-direction: column; }
+  .trophy-seal { display: none; }
+  .reigning-champion { grid-template-columns: 1fr; text-align: center; }
+  .reigning-champion .winner-emblem { margin-inline: auto; }
+  .reigning-champion .winner-numbers { grid-column: auto; }
+  .winners-section-heading { align-items: flex-start; flex-direction: column; }
+  .winners-section-heading.compact { align-items: flex-start; }
+}
+@media (max-width: 520px) {
+  .winners-layout { margin-top: -35px; }
+  .reigning-champion, .title-race, .winners-records, .season-archive { padding: 19px; }
+  .reigning-copy h2 { font-size: 2.5rem; }
+  .champions-grid { grid-template-columns: 1fr; }
+  .champion-tile { min-height: 0; }
+  .archive-year-card { grid-template-columns: auto minmax(0,1fr); }
+  .archive-year-card .status { grid-column: 2; }
+}
