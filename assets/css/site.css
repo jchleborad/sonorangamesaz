@@ -39,6 +39,7 @@
 .announcement h2 { margin: 5px 0 8px; font-size: 1.3rem; }
 .announcement p { margin: 0; color: var(--muted); font-size: .86rem; line-height: 1.55; }
 .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.season-scroll-cue { display: none; }
 .stat { padding: 14px 10px; border-radius: 12px; background: var(--linen); text-align: center; }
 .stat strong { display: block; font: 800 1.65rem var(--font-display); }
 .stat span { color: var(--muted); font-size: .66rem; font-weight: 800; text-transform: uppercase; }
@@ -97,6 +98,7 @@
   .freshness { grid-column: 1 / -1; border-top: 1px solid var(--border); text-align: center; }
   .game-grid { grid-template-columns: 1fr; }
   .scoreboard-title-row .week-nav { width: 100%; justify-content: space-between; }
+  .season-scroll-cue { display: block; margin: -5px 0 10px; color: var(--copper); font-size: .7rem; font-weight: 800; text-align: right; }
 }
 
 /* Weekly picks */
