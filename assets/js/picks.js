@@ -11,6 +11,7 @@
   let card = null;
   let guidanceTimer = null;
   let lastGuidedGameId = '';
+  let draftDirty = false;
 
   const escapeHtml = value => String(value ?? '').replace(/[&<>"]/g, character => ({
     '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'
@@ -58,6 +59,73 @@
 
   function initials(name) {
     return String(name || '').split(/\s+/).filter(Boolean).slice(0, 2).map(part => part[0]).join('').toUpperCase();
+  }
+
+  function draftKey() {
+    return `sonoran-games:picks-draft:${card.competition_id}:${card.season}:${card.week}:${card.player.player_id}`;
+  }
+
+  function formatSavedTime(iso) {
+    return iso ? formatDate(iso, { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' }) : '';
+  }
+
+  function readDraft() {
+    try { return JSON.parse(window.localStorage.getItem(draftKey()) || 'null'); }
+    catch (error) { return null; }
+  }
+
+  function restoreNewerDraft() {
+    if (!card.picks_open) return;
+    const draft = readDraft();
+    if (!draft || !draft.saved_at_utc) return;
+    const draftTime = Date.parse(draft.saved_at_utc);
+    const submittedTime = Date.parse(card.submitted_at_utc || '') || 0;
+    if (!Number.isFinite(draftTime) || draftTime <= submittedTime) return;
+    const draftPicks = draft.picks && typeof draft.picks === 'object' ? draft.picks : {};
+    card.games.forEach(game => {
+      if (!game.locked && [game.away_abbr, game.home_abbr].includes(draftPicks[String(game.game_id)])) {
+        game.pick_team = draftPicks[String(game.game_id)];
+      }
+    });
+    if (draft.tiebreaker !== '' && draft.tiebreaker !== null && draft.tiebreaker !== undefined) card.tiebreaker = draft.tiebreaker;
+    draftDirty = true;
+  }
+
+  function saveDraft() {
+    if (!card.picks_open) return;
+    const picks = {};
+    card.games.forEach(game => { if (game.pick_team) picks[String(game.game_id)] = game.pick_team; });
+    try {
+      window.localStorage.setItem(draftKey(), JSON.stringify({
+        saved_at_utc: new Date().toISOString(),
+        picks,
+        tiebreaker: document.querySelector('[data-tiebreaker]').value.trim()
+      }));
+      draftDirty = true;
+      updateSaveStatus();
+    } catch (error) {
+      // Draft storage must never block a player from submitting.
+    }
+  }
+
+  function clearDraft() {
+    try { window.localStorage.removeItem(draftKey()); } catch (error) { /* no-op */ }
+    draftDirty = false;
+  }
+
+  function updateSaveStatus() {
+    const status = document.querySelector('[data-save-status]');
+    if (!status) return;
+    if (draftDirty) {
+      status.className = 'card-save-status is-draft';
+      status.innerHTML = '<strong>Draft saved on this device</strong><span>Submit when your card is complete.</span>';
+    } else if (card.submitted_at_utc) {
+      status.className = 'card-save-status is-submitted';
+      status.innerHTML = `<strong>Card submitted</strong><span>${escapeHtml(formatSavedTime(card.submitted_at_utc))} Arizona time</span>`;
+    } else {
+      status.className = 'card-save-status';
+      status.innerHTML = '<strong>Not submitted yet</strong><span>Your changes will be saved as a draft on this device.</span>';
+    }
   }
 
   function renderTeam(game, side) {
@@ -116,10 +184,11 @@
         <div class="pick-notice" role="note"><span class="notice-clock" aria-hidden="true">◷</span><div><strong>Games lock individually</strong><p>${lockedCount ? `${lockedCount} game${lockedCount === 1 ? ' is' : 's are'} already locked. ` : ''}You may change every open pick until that matchup begins.</p></div></div>
         ${groupedGames().map(renderDay).join('')}
         <section class="card tiebreaker-card" data-tiebreaker-card><div><p class="eyebrow">Weekly tiebreaker</p><h2 class="display">Total combined points</h2><p>Enter the total points you predict for the final game of the week.</p></div><label class="tiebreaker-input"><span class="sr-only">Total combined points</span><input type="number" min="0" max="200" inputmode="numeric" placeholder="—" data-tiebreaker value="${escapeHtml(card.tiebreaker)}"${card.picks_open ? '' : ' disabled'}><small>Points</small></label></section>
-      </div><aside class="submit-column"><section class="card submit-card" data-submit-card><p class="eyebrow">Review &amp; submit</p><h2 class="display">Your Week ${card.week} card</h2><div class="submit-summary"><div><span>Games selected</span><strong><span data-review-count>0</span>/${card.games.length}</strong></div><div><span>Tiebreaker</span><strong data-review-tiebreaker>Not entered</strong></div></div><div class="submit-warning" data-submit-warning></div><button class="button submit-button" type="button" data-submit-picks${card.picks_open ? '' : ' disabled'}>Finish my card →</button><p class="submit-help">${card.picks_open ? 'You may return and change any unlocked pick before that game begins.' : 'Practice picks are currently closed by the commissioner.'}</p></section></aside></div>
+      </div><aside class="submit-column"><section class="card submit-card" data-submit-card><p class="eyebrow">Review &amp; submit</p><h2 class="display">Your Week ${card.week} card</h2><div class="card-save-status" data-save-status></div><div class="submit-summary"><div><span>Games selected</span><strong><span data-review-count>0</span>/${card.games.length}</strong></div><div><span>Tiebreaker</span><strong data-review-tiebreaker>Not entered</strong></div></div><div class="submit-warning" data-submit-warning></div><button class="button submit-button" type="button" data-submit-picks${card.picks_open ? '' : ' disabled'}>Finish my card →</button><p class="submit-help">${card.picks_open ? 'You may return and change any unlocked pick before that game begins.' : 'Practice picks are currently closed by the commissioner.'}</p></section></aside></div>
       <div class="confirmation-overlay" data-confirmation hidden><section class="card confirmation-card" role="dialog" aria-modal="true" aria-labelledby="confirmation-title"><span class="confirmation-mark" aria-hidden="true">✓</span><p class="eyebrow">Touchdown</p><h2 class="display" id="confirmation-title">Week ${card.week} picks saved</h2><p>Your card has been saved. You can still update any matchup that has not locked.</p><div class="confirmation-actions"><button class="button" type="button" data-close-confirmation>Back to my picks</button><a class="text-link" href="/">Return home</a></div></section></div>`;
     bindInteractions();
     updateState();
+    updateSaveStatus();
   }
 
   function selectedCount() {
@@ -177,6 +246,7 @@
     gameElement.querySelector('.pick-needed')?.remove();
     clearGuidance();
     updateState();
+    saveDraft();
   }
 
   function nextMissingGame() {
@@ -211,6 +281,9 @@
       };
       const result = await saveWeeklyCard(payload);
       if (!result.ok) throw new Error(apiErrorMessage(result, 'Your picks could not be saved.'));
+      card.submitted_at_utc = result.server_time_utc || new Date().toISOString();
+      clearDraft();
+      updateSaveStatus();
       const confirmation = document.querySelector('[data-confirmation]');
       confirmation.hidden = false;
       document.body.style.overflow = 'hidden';
@@ -234,7 +307,7 @@
     document.querySelectorAll('[data-game]').forEach(gameElement => {
       gameElement.querySelectorAll('.team-choice').forEach(button => button.addEventListener('click', () => selectTeam(gameElement, button)));
     });
-    document.querySelector('[data-tiebreaker]').addEventListener('input', updateState);
+    document.querySelector('[data-tiebreaker]').addEventListener('input', () => { updateState(); saveDraft(); });
     document.querySelector('[data-submit-picks]').addEventListener('click', submitPicks);
     document.querySelector('[data-close-confirmation]').addEventListener('click', closeConfirmation);
     document.querySelector('[data-confirmation]').addEventListener('click', event => { if (event.target === event.currentTarget) closeConfirmation(); });
@@ -251,7 +324,7 @@
   }
 
   function renderFatal(message) {
-    main.innerHTML = `<section class="picks-hero"><div class="container"><p class="eyebrow">Personal player link needed</p><h1 class="display picks-title">We couldn’t open this picks card</h1><p class="picks-intro">${escapeHtml(message)}</p><p class="picks-intro">Ask John for a new personal Sonoran Games player link.</p></div></section>`;
+    main.innerHTML = `<section class="picks-hero"><div class="container"><p class="eyebrow">Personal player link needed</p><h1 class="display picks-title">We couldn’t open your picks card</h1><p class="picks-intro">${escapeHtml(message)}</p><p class="picks-intro">Ask John for a new personal Sonoran Games player link.</p></div></section>`;
   }
 
   async function initialize() {
@@ -259,6 +332,7 @@
     if (!playerToken) return renderFatal('This address does not include a player token.');
     try {
       card = await loadWeeklyCard();
+      restoreNewerDraft();
       renderPage();
     } catch (error) {
       renderFatal(error.message);
