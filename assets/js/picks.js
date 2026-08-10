@@ -324,7 +324,7 @@
   }
 
   function renderFatal(message) {
-    main.innerHTML = `<section class="picks-hero"><div class="container"><p class="eyebrow">Personal player link needed</p><h1 class="display picks-title">We couldn’t open your picks card</h1><p class="picks-intro">${escapeHtml(message)}</p><p class="picks-intro">Ask John for a new personal Sonoran Games player link.</p></div></section>`;
+    main.innerHTML = `<section class="picks-hero"><div class="container"><p class="eyebrow">Personal player link needed</p><h1 class="display picks-title">We couldn’t open your picks card</h1><p class="picks-intro">${escapeHtml(message)}</p><p class="picks-intro">Contact the Sonoran Games Administrator for a new personal player link.</p></div></section>`;
   }
 
   async function initialize() {

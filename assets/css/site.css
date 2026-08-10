@@ -43,6 +43,14 @@
 .stat { padding: 14px 10px; border-radius: 12px; background: var(--linen); text-align: center; }
 .stat strong { display: block; font: 800 1.65rem var(--font-display); }
 .stat span { color: var(--muted); font-size: .66rem; font-weight: 800; text-transform: uppercase; }
+.stat small { display: block; margin-top: 0; color: var(--muted); font-size: .62rem; font-weight: 800; letter-spacing: .06em; }
+.stats-card .stats-grid { align-items: stretch; }
+.stats-card .stat { display: flex; min-height: 106px; align-items: center; justify-content: center; flex-direction: column; }
+.stats-card .stat strong { font-size: 1.45rem; }
+
+.footer-copy { max-width: 720px; text-align: right; }
+.footer-copy p + p { margin-top: 5px; }
+.footer-copy p:last-child { color: rgba(235, 219, 183, .72); font-size: .7rem; }
 
 .scoreboard-main { padding: 38px 0 0; }
 .scoreboard-header { display: grid; gap: 20px; }
@@ -369,6 +377,7 @@
   .nav-wrap .brand, .footer-inner .brand { min-width: 0; }
   .footer-inner { gap: 18px; }
   .footer-inner p { max-width: 100%; line-height: 1.55; overflow-wrap: anywhere; }
+  .footer-copy { text-align: left; }
   .results-layout { margin-top: -35px; }
   .results-tabs { flex-direction: column; }
   .weekly-winner, .results-table-card, .season-leader, .formula-card { padding: 19px; }
