@@ -4,7 +4,7 @@
   const API_URL = 'https://script.google.com/macros/s/AKfycbw9dkf50_ofoiG4K00IYWNn_Tf61cBOst67vw26h7ZhSajNHbyT3H5oNqV_va31GpKzuw/exec';
   const API_VERSION = 'v1';
   const COMPETITION_ID = 'practice_2026';
-  const ARIZONA_TIME_ZONE = 'America/Phoenix';
+  const PLAYER_TIME_ZONE = Intl.DateTimeFormat().resolvedOptions().timeZone || 'America/Phoenix';
   const params = new URLSearchParams(window.location.search);
   const playerToken = params.get('player') || '';
   const main = document.querySelector('.picks-main');
@@ -19,6 +19,30 @@
 
   function apiErrorMessage(payload, fallback) {
     return payload && payload.message ? payload.message : fallback;
+  }
+
+  function createSubmissionId() {
+    const cryptoApi = window.crypto;
+
+    if (cryptoApi && typeof cryptoApi.randomUUID === 'function') {
+      try {
+        return cryptoApi.randomUUID();
+      } catch (error) {
+        // Fall through to getRandomValues if randomUUID exists but cannot be used.
+      }
+    }
+
+    if (cryptoApi && typeof cryptoApi.getRandomValues === 'function') {
+      const bytes = new Uint8Array(16);
+      cryptoApi.getRandomValues(bytes);
+      bytes[6] = (bytes[6] & 0x0f) | 0x40;
+      bytes[8] = (bytes[8] & 0x3f) | 0x80;
+
+      const hex = Array.from(bytes, byte => byte.toString(16).padStart(2, '0'));
+      return `${hex[0]}${hex[1]}${hex[2]}${hex[3]}-${hex[4]}${hex[5]}-${hex[6]}${hex[7]}-${hex[8]}${hex[9]}-${hex[10]}${hex[11]}${hex[12]}${hex[13]}${hex[14]}${hex[15]}`;
+    }
+
+    return `sg-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 10)}-${Math.random().toString(36).slice(2, 10)}`;
   }
 
   async function loadWeeklyCard() {
@@ -46,7 +70,7 @@
   }
 
   function formatDate(iso, options) {
-    return new Intl.DateTimeFormat('en-US', { timeZone: ARIZONA_TIME_ZONE, ...options }).format(new Date(iso));
+    return new Intl.DateTimeFormat('en-US', { timeZone: PLAYER_TIME_ZONE, ...options }).format(new Date(iso));
   }
 
   function dayKey(game) {
@@ -121,7 +145,7 @@
       status.innerHTML = '<strong>Draft saved on this device</strong><span>Submit when your card is complete.</span>';
     } else if (card.submitted_at_utc) {
       status.className = 'card-save-status is-submitted';
-      status.innerHTML = `<strong>Card submitted</strong><span>${escapeHtml(formatSavedTime(card.submitted_at_utc))} Arizona time</span>`;
+      status.innerHTML = `<strong>Card submitted</strong><span>${escapeHtml(formatSavedTime(card.submitted_at_utc))} local time</span>`;
     } else {
       status.className = 'card-save-status';
       status.innerHTML = '<strong>Not submitted yet</strong><span>Your changes will be saved as a draft on this device.</span>';
@@ -275,7 +299,7 @@
       const payload = {
         action: 'savePicks', api_version: API_VERSION, competition_id: COMPETITION_ID,
         season: card.season, week: card.week, player_token: playerToken,
-        submission_id: crypto.randomUUID(), client_submitted_at_utc: new Date().toISOString(),
+        submission_id: createSubmissionId(), client_submitted_at_utc: new Date().toISOString(),
         submission_type: 'CARD_SAVE', tiebreaker: Number(tiebreaker.value),
         picks: card.games.filter(game => !game.locked).map(game => ({ game_id: game.game_id, pick_team: game.pick_team }))
       };
