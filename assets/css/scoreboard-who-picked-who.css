@@ -1,0 +1,222 @@
+/* Scores — Who Picked Who enhancement */
+.wph {
+  margin: 18px -19px -19px;
+  border-top: 1px solid var(--border);
+  background: rgba(232, 217, 194, .22);
+}
+
+.wph-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 17px 19px 10px;
+  color: var(--copper);
+  font-size: .72rem;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.wph-heading span:last-child {
+  color: var(--muted);
+  font-size: .65rem;
+  letter-spacing: 0;
+}
+
+.wph-pool-bar {
+  display: flex;
+  height: 6px;
+  margin: 0 19px 12px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: var(--sand);
+}
+
+.wph-pool-away { background: var(--navy); }
+.wph-pool-home { background: var(--copper); }
+
+.wph-team-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 9px;
+  padding: 0 19px 12px;
+}
+
+.wph-team-box {
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 10px;
+  border: 1px solid var(--border);
+  border-radius: 11px;
+  background: var(--white);
+}
+
+.wph-team-box .team-mark {
+  width: 34px;
+  height: 34px;
+  font-size: .62rem;
+}
+
+.wph-home-mark { background: var(--copper); }
+
+.wph-team-box div {
+  display: grid;
+  min-width: 0;
+}
+
+.wph-team-box strong {
+  font-size: .74rem;
+}
+
+.wph-team-box small {
+  color: var(--muted);
+  font-size: .62rem;
+}
+
+.wph-team-box b {
+  font: 800 1.25rem/1 var(--font-display);
+}
+
+.wph-toggle {
+  display: flex;
+  width: calc(100% - 38px);
+  min-height: 43px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin: 0 19px 16px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--linen);
+  color: var(--ink);
+  font-size: .72rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.wph-picks {
+  padding: 15px 19px 17px;
+  border-top: 1px solid var(--border);
+  background: rgba(255,255,255,.28);
+}
+
+.wph-pick-row {
+  display: grid;
+  grid-template-columns: 52px minmax(0,1fr);
+  align-items: start;
+  gap: 10px;
+}
+
+.wph-pick-row + .wph-pick-row { margin-top: 12px; }
+
+.wph-team-key {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding-top: 17px;
+  font-size: .67rem;
+  font-weight: 800;
+}
+
+.wph-team-key > span {
+  width: 7px;
+  height: 7px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background: var(--navy);
+}
+
+.wph-team-key.is-home > span { background: var(--copper); }
+
+.wph-scroll-shell { min-width: 0; }
+
+.wph-overflow-cue {
+  min-height: 16px;
+  margin-bottom: 2px;
+  color: var(--copper);
+  font-size: .62rem;
+  font-weight: 800;
+  text-align: right;
+}
+
+.wph-player-scroll {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 4px 0 6px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(24,36,58,.45) rgba(24,36,58,.07);
+  -webkit-overflow-scrolling: touch;
+}
+
+.wph-player-line {
+  display: inline-flex;
+  min-width: max-content;
+  align-items: center;
+  gap: 5px;
+  white-space: nowrap;
+  color: var(--muted);
+  font-size: .69rem;
+}
+
+.wph-player { display: inline-flex; align-items: center; gap: 2px; }
+
+.wph-separator { color: rgba(24,36,58,.28); }
+
+.wph-mark { font-weight: 900; }
+.wph-mark.is-correct { color: var(--success); }
+.wph-mark.is-incorrect { color: var(--copper); }
+
+.wph-legend {
+  margin: 13px 0 0;
+  color: var(--muted);
+  font-size: .62rem;
+}
+
+.wph-empty {
+  margin: 0;
+  padding: 0 19px 17px;
+  color: var(--muted);
+  font-size: .72rem;
+}
+
+.freshness.is-stale {
+  color: var(--copper);
+  font-weight: 800;
+}
+
+@media (max-width: 620px) {
+  .wph {
+    margin-right: -19px;
+    margin-left: -19px;
+  }
+
+  .wph-heading { padding-top: 15px; }
+
+  .wph-team-split { gap: 7px; }
+
+  .wph-team-box {
+    grid-template-columns: 30px minmax(0, 1fr) auto;
+    gap: 6px;
+    padding: 8px;
+  }
+
+  .wph-team-box .team-mark {
+    width: 30px;
+    height: 30px;
+    font-size: .56rem;
+  }
+
+  .wph-team-box strong { font-size: .68rem; }
+  .wph-team-box small { font-size: .57rem; }
+  .wph-team-box b { font-size: 1.1rem; }
+
+  .wph-picks { padding-right: 15px; padding-left: 15px; }
+  .wph-pick-row { grid-template-columns: 42px minmax(0, 1fr); gap: 7px; }
+  .wph-team-key { font-size: .61rem; }
+  .wph-player-line { font-size: .64rem; }
+  .wph-overflow-cue { font-size: .58rem; }
+}
