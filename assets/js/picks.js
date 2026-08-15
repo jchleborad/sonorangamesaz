@@ -3,10 +3,17 @@
 
   const API_URL = 'https://script.google.com/macros/s/AKfycbw9dkf50_ofoiG4K00IYWNn_Tf61cBOst67vw26h7ZhSajNHbyT3H5oNqV_va31GpKzuw/exec';
   const API_VERSION = 'v1';
-  const COMPETITION_ID = 'practice_2026';
+  const COMPETITION_ID = 'official_2026';
   const PLAYER_TIME_ZONE = Intl.DateTimeFormat().resolvedOptions().timeZone || 'America/Phoenix';
+
   const params = new URLSearchParams(window.location.search);
-  const playerToken = params.get('player') || '';
+  const urlPlayerToken = params.get('player') || '';
+  const savedPlayerToken =
+    window.SonoranPlayerAccess && typeof window.SonoranPlayerAccess.getToken === 'function'
+    ? window.SonoranPlayerAccess.getToken()
+    : '';
+
+  const playerToken = urlPlayerToken || savedPlayerToken;
   const main = document.querySelector('.picks-main');
   let card = null;
   let guidanceTimer = null;
@@ -167,7 +174,7 @@
   function renderGame(game) {
     const selected = Boolean(game.pick_team);
     const locked = game.locked || !card.picks_open;
-    const lockText = game.locked ? 'Locked at kickoff' : card.picks_open ? `Locks at ${kickoffTime(game)}` : 'Practice picks are closed';
+    const lockText = game.locked ? 'Locked at kickoff' : card.picks_open ? `Locks at ${kickoffTime(game)}` : 'Picks are closed';
     return `<article class="card matchup-card${locked ? ' is-locked' : ''}${!selected ? ' needs-pick' : ''}" data-game data-game-id="${escapeHtml(game.game_id)}" data-locked="${locked}">
       <div class="matchup-meta"><span>${kickoffTime(game)}</span><strong>${lockText}</strong></div>
       <div class="team-choices" role="group" aria-label="${escapeHtml(game.away_team)} at ${escapeHtml(game.home_team)}">
@@ -202,13 +209,13 @@
     const playerName = card.player.display_name;
     const lockedCount = card.games.filter(game => game.locked).length;
     main.innerHTML = `
-      <section class="picks-hero"><div class="container picks-hero-row"><div><p class="eyebrow">${card.season} Regular Season · Practice</p><h1 class="display picks-title">Make your Week ${card.week} picks</h1><p class="picks-intro">Choose one winner for every matchup. Each game stays open until its scheduled kickoff.</p></div><div class="player-card" aria-label="Current player"><span class="player-avatar" aria-hidden="true">${escapeHtml(initials(playerName))}</span><div><small>Picking as</small><strong>${escapeHtml(playerName)}</strong></div></div></div></section>
+      <section class="picks-hero"><div class="container picks-hero-row"><div><p class="eyebrow">${card.season} Regular Season</p><h1 class="display picks-title">Make your Week ${card.week} picks</h1><p class="picks-intro">Choose one winner for every matchup. Each game stays open until its scheduled kickoff.</p></div><div class="player-card" aria-label="Current player"><span class="player-avatar" aria-hidden="true">${escapeHtml(initials(playerName))}</span><div><small>Picking as</small><strong>${escapeHtml(playerName)}</strong></div></div></div></section>
       <div class="container picks-layout"><div class="picks-column">
         <section class="card picks-progress-card" aria-labelledby="progress-title"><div class="picks-progress-copy"><p class="eyebrow">Your Week ${card.week} card</p><h2 class="display" id="progress-title"><span data-selected-count>0</span> of ${card.games.length} selected</h2><p data-progress-message>Loading your progress…</p></div><div class="progress-ring" data-progress-ring style="--progress:0%"><strong data-progress-percent>0%</strong><span>Complete</span></div><div class="progress-track" aria-hidden="true"><span data-progress-bar style="width:0%"></span></div></section>
         <div class="pick-notice" role="note"><span class="notice-clock" aria-hidden="true">◷</span><div><strong>Games lock individually</strong><p>${lockedCount ? `${lockedCount} game${lockedCount === 1 ? ' is' : 's are'} already locked. ` : ''}You may change every open pick until that matchup begins.</p></div></div>
         ${groupedGames().map(renderDay).join('')}
         <section class="card tiebreaker-card" data-tiebreaker-card><div><p class="eyebrow">Weekly tiebreaker</p><h2 class="display">Total combined points</h2><p>Enter the total points you predict for the final game of the week.</p></div><label class="tiebreaker-input"><span class="sr-only">Total combined points</span><input type="number" min="0" max="200" inputmode="numeric" placeholder="—" data-tiebreaker value="${escapeHtml(card.tiebreaker)}"${card.picks_open ? '' : ' disabled'}><small>Points</small></label></section>
-      </div><aside class="submit-column"><section class="card submit-card" data-submit-card><p class="eyebrow">Review &amp; submit</p><h2 class="display">Your Week ${card.week} card</h2><div class="card-save-status" data-save-status></div><div class="submit-summary"><div><span>Games selected</span><strong><span data-review-count>0</span>/${card.games.length}</strong></div><div><span>Tiebreaker</span><strong data-review-tiebreaker>Not entered</strong></div></div><div class="submit-warning" data-submit-warning></div><button class="button submit-button" type="button" data-submit-picks${card.picks_open ? '' : ' disabled'}>Finish my card →</button><p class="submit-help">${card.picks_open ? 'You may return and change any unlocked pick before that game begins.' : 'Practice picks are currently closed by the commissioner.'}</p></section></aside></div>
+      </div><aside class="submit-column"><section class="card submit-card" data-submit-card><p class="eyebrow">Review &amp; submit</p><h2 class="display">Your Week ${card.week} card</h2><div class="card-save-status" data-save-status></div><div class="submit-summary"><div><span>Games selected</span><strong><span data-review-count>0</span>/${card.games.length}</strong></div><div><span>Tiebreaker</span><strong data-review-tiebreaker>Not entered</strong></div></div><div class="submit-warning" data-submit-warning></div><button class="button submit-button" type="button" data-submit-picks${card.picks_open ? '' : ' disabled'}>Finish my card →</button><p class="submit-help">${card.picks_open ? 'You may return and change any unlocked pick before that game begins.' : 'Picks are currently closed by the commissioner.'}</p></section></aside></div>
       <div class="confirmation-overlay" data-confirmation hidden><section class="card confirmation-card" role="dialog" aria-modal="true" aria-labelledby="confirmation-title"><span class="confirmation-mark" aria-hidden="true">✓</span><p class="eyebrow">Touchdown</p><h2 class="display" id="confirmation-title">Week ${card.week} picks saved</h2><p>Your card has been saved. You can still update any matchup that has not locked.</p><div class="confirmation-actions"><button class="button" type="button" data-close-confirmation>Back to my picks</button><a class="text-link" href="/">Return home</a></div></section></div>`;
     bindInteractions();
     updateState();
@@ -344,7 +351,7 @@
   }
 
   function renderLoading() {
-    main.innerHTML = '<section class="picks-hero"><div class="container"><p class="eyebrow">Practice field</p><h1 class="display picks-title">Loading your picks…</h1><p class="picks-intro">We’re opening your personal Sonoran Games card.</p></div></section>';
+    main.innerHTML = '<section class="picks-hero"><div class="container"><p class="eyebrow">Sonoran Games</p><h1 class="display picks-title">Loading your picks…</h1><p class="picks-intro">We’re opening your personal Sonoran Games card.</p></div></section>';
   }
 
   function renderFatal(message) {
@@ -356,6 +363,14 @@
     if (!playerToken) return renderFatal('This address does not include a player token.');
     try {
       card = await loadWeeklyCard();
+
+      if (
+        window.SonoranPlayerAccess &&
+        typeof window.SonoranPlayerAccess.saveToken === 'function'
+      ) {
+        window.SonoranPlayerAccess.saveToken(playerToken);
+      }
+
       restoreNewerDraft();
       renderPage();
     } catch (error) {
