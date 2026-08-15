@@ -371,8 +371,15 @@
         window.SonoranPlayerAccess.saveToken(playerToken);
       }
 
+      if (urlPlayerToken) {
+        const cleanUrl = new URL(window.location.href);
+        cleanUrl.searchParams.delete('player');
+        window.history.replaceState({}, '', `${cleanUrl.pathname}${cleanUrl.search}${cleanUrl.hash}`);
+      }
+
       restoreNewerDraft();
       renderPage();
+      
     } catch (error) {
       renderFatal(error.message);
     }
