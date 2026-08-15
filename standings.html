@@ -37,126 +37,60 @@
     </section>
 
     <div class="container results-layout" id="weekly-results-panel" role="tabpanel" aria-labelledby="weekly-results-tab" data-standings-panel="weekly">
-      <section class="results-toolbar" aria-label="Select results week">
+      <section class="results-toolbar" aria-label="Week 1 results status">
         <div>
-          <p class="eyebrow">Completed week</p>
-          <h2 class="display">Week 6 Results</h2>
-          <p>October 15–19, 2026 · 15 games final</p>
+          <p class="eyebrow" data-weekly-eyebrow>Opening week</p>
+          <h2 class="display">Week 1 Results</h2>
+          <p data-weekly-toolbar-copy>Results begin after Week 1 games are graded.</p>
         </div>
-        <div class="week-nav" aria-label="Week navigation">
-          <button type="button" aria-label="View Week 5">←</button>
-          <span>Week 6</span>
-          <button type="button" aria-label="View Week 7" disabled>→</button>
-        </div>
+        <span class="status status-upcoming" data-weekly-status>Coming soon</span>
       </section>
 
       <section class="weekly-winner card">
         <div class="winner-emblem" aria-hidden="true">★</div>
         <div class="weekly-winner-copy">
-          <p class="eyebrow">Week 6 Champion</p>
-          <h2 class="display">Tom S.</h2>
-          <p class="winner-lead">13 correct picks</p>
-          <p>Tom and Kevin P. finished tied at the top. Tom claimed the week with the closer Monday Night tiebreaker.</p>
-        </div>
-        <div class="winner-numbers" aria-label="Winning results">
-          <div><span>Record</span><strong>13–2</strong></div>
-          <div><span>Tiebreaker</span><strong>46</strong><small>Game Total: 44</small></div>
-          <div><span>Difference</span><strong>2</strong><small>points</small></div>
+          <p class="eyebrow">Weekly champion</p>
+          <h2 class="display" data-weekly-title>The first one is up for grabs.</h2>
+          <p class="winner-lead" data-weekly-lead>Week 1 will crown our first 2026 winner.</p>
+          <p data-weekly-copy>Once Week 1 is complete and graded, the champion and winning tiebreaker will appear here.</p>
         </div>
       </section>
 
-      <div class="results-grid">
-        <section class="card results-table-card">
-          <div class="section-heading results-heading">
-            <div><p class="eyebrow">Week 6 Final Leaderboard</p><h2 class="display">How everyone finished</h2></div>
-            <span class="status status-final">Final</span>
+      <section class="card results-table-card">
+        <div class="section-heading results-heading">
+          <div>
+            <p class="eyebrow">Week 1 leaderboard</p>
+            <h2 class="display">How everyone finished</h2>
           </div>
-          <p class="season-scroll-cue">Swipe to see all stats →</p>
-          <p class="table-scroll-cue" data-table-scroll-cue hidden></p>
-          <div class="table-scroll" data-weekly-table-scroll>
-            <table class="weekly-table">
-              <thead><tr><th>Rank</th><th>Player</th><th>Correct</th><th>Wrong</th><th>Tiebreaker</th><th>Difference</th></tr></thead>
-              <tbody>
-                <tr class="weekly-first"><td><span class="rank-medal">1</span></td><td><strong>Tom S.</strong><small>Week 6 champion</small></td><td>13</td><td>2</td><td>46</td><td>2</td></tr>
-                <tr><td>2</td><td><strong>Kevin P.</strong><small>Lost tiebreaker</small></td><td>13</td><td>2</td><td>39</td><td>5</td></tr>
-                <tr><td>3</td><td><strong>Bill M.</strong></td><td>12</td><td>3</td><td>47</td><td>3</td></tr>
-                <tr><td>4</td><td><strong>Victor R.</strong></td><td>12</td><td>3</td><td>49</td><td>5</td></tr>
-                <tr><td>5</td><td><strong>Cindy C.</strong></td><td>11</td><td>4</td><td>45</td><td>1</td></tr>
-                <tr><td>6</td><td><strong>Tyler C.</strong></td><td>11</td><td>4</td><td>51</td><td>7</td></tr>
-                <tr><td>7</td><td><strong>Dave R.</strong></td><td>11</td><td>4</td><td>36</td><td>8</td></tr>
-                <tr><td>8</td><td><strong>Mary P.</strong></td><td>10</td><td>5</td><td>43</td><td>1</td></tr>
-                <tr><td>9</td><td><strong>Steve B.</strong></td><td>10</td><td>5</td><td>42</td><td>2</td></tr>
-                <tr><td>10</td><td><strong>Mike D.</strong></td><td>10</td><td>5</td><td>47</td><td>3</td></tr>
-                <tr><td>11</td><td><strong>Chris H.</strong></td><td>10</td><td>5</td><td>40</td><td>4</td></tr>
-                <tr><td>12</td><td><strong>Jim K.</strong></td><td>10</td><td>5</td><td>49</td><td>5</td></tr>
-                <tr><td>13</td><td><strong>Dan L.</strong></td><td>10</td><td>5</td><td>38</td><td>6</td></tr>
-                <tr><td>14</td><td><strong>Rick N.</strong></td><td>9</td><td>6</td><td>45</td><td>1</td></tr>
-                <tr><td>15</td><td><strong>Lisa G.</strong></td><td>9</td><td>6</td><td>42</td><td>2</td></tr>
-                <tr><td>16</td><td><strong>Mark T.</strong></td><td>9</td><td>6</td><td>48</td><td>4</td></tr>
-                <tr><td>17</td><td><strong>Susan W.</strong></td><td>9</td><td>6</td><td>39</td><td>5</td></tr>
-                <tr><td>18</td><td><strong>Bob A.</strong></td><td>8</td><td>7</td><td>50</td><td>6</td></tr>
-                <tr><td>19</td><td><strong>Julie F.</strong></td><td>7</td><td>8</td><td>37</td><td>7</td></tr>
-                <tr><td>20</td><td><strong>Paul J.</strong></td><td>7</td><td>8</td><td>52</td><td>8</td></tr>
-              </tbody>
-            </table>
+          <span class="status status-upcoming" data-weekly-table-status>Waiting for results</span>
+        </div>
+        <div class="week-story" style="margin-top:0">
+          <div>
+            <p class="eyebrow">Week 1</p>
+            <h2 class="display" data-weekly-placeholder-title>Results will appear here.</h2>
+            <p data-weekly-placeholder-copy>The leaderboard will populate after Week 1 games are graded.</p>
           </div>
-          <p class="table-note">Ties in correct picks are ordered by the closest tiebreaker prediction. Prototype results shown.</p>
-        </section>
-
-        <aside class="weekly-highlights">
-          <section class="card highlight-card highlight-upset">
-            <div class="highlight-icon" aria-hidden="true">↗</div>
-            <p class="eyebrow">Biggest upset</p>
-            <h2>Cardinals over Cowboys</h2>
-            <p>Only <strong>3 of 20 players</strong> called Arizona’s road win.</p>
-            <div class="pick-split"><span style="--split:15%">ARI 15%</span><span>DAL 85%</span></div>
-          </section>
-          <section class="card highlight-card">
-            <div class="highlight-icon" aria-hidden="true">◷</div>
-            <p class="eyebrow">Closest finish</p>
-            <h2>Decided by 2 points</h2>
-            <p>Tom S. edged Kevin P. after both finished with 13 correct picks.</p>
-          </section>
-          <section class="card highlight-card">
-            <div class="highlight-icon" aria-hidden="true">✓</div>
-            <p class="eyebrow">Pool performance</p>
-            <h2>67% correct</h2>
-            <p>Players combined for 201 correct picks across 300 selections.</p>
-          </section>
-        </aside>
-      </div>
-
-      <section class="card week-story">
-        <div><p class="eyebrow">Week 6 snapshot</p><h2 class="display">The week at a glance</h2></div>
-        <div class="week-stat"><strong>20</strong><span>Players</span></div>
-        <div class="week-stat"><strong>15</strong><span>Games</span></div>
-        <div class="week-stat"><strong>13</strong><span>Best score</span></div>
-        <div class="week-stat"><strong>2</strong><span>Players Tied for Best</span></div>
+        </div>
       </section>
     </div>
 
     <div class="container results-layout season-layout" id="season-standings-panel" role="tabpanel" aria-labelledby="season-standings-tab" data-standings-panel="season" hidden>
       <section class="results-toolbar season-toolbar">
         <div>
-          <p class="eyebrow">Through Week 6</p>
+          <p class="eyebrow" data-season-eyebrow>2026 season</p>
           <h2 class="display">2026 Season Standings</h2>
-          <p>Six completed weeks · Rankings updated after Monday Night Football</p>
+          <p data-season-toolbar-copy>Standings begin with Week 1.</p>
         </div>
-        <span class="status status-final">Current</span>
+        <span class="status status-upcoming" data-season-status>Coming soon</span>
       </section>
 
       <section class="card season-leader">
         <div class="winner-emblem" aria-hidden="true">★</div>
         <div class="season-leader-copy">
-          <p class="eyebrow">Current season leader</p>
-          <h2 class="display">Bill M.</h2>
-          <p class="winner-lead">100.0 season points</p>
-          <p>Bill’s two weekly wins and season-leading 70 correct picks give him the strongest combined score through Week 6.</p>
-        </div>
-        <div class="winner-numbers season-leader-numbers" aria-label="Leader's season performance">
-          <div><span>Weekly wins</span><strong>2</strong><small>60% weight</small></div>
-          <div><span>Correct picks</span><strong>70</strong><small>40% weight</small></div>
-          <div><span>Rank change</span><strong>↑ 3</strong><small>from Week 5</small></div>
+          <p class="eyebrow">Season race</p>
+          <h2 class="display" data-season-title>The race begins Week 1.</h2>
+          <p class="winner-lead" data-season-lead>No leader yet.</p>
+          <p data-season-copy>Season rankings will appear as completed games are graded.</p>
         </div>
       </section>
 
@@ -174,45 +108,19 @@
       <section class="card results-table-card season-table-card">
         <div class="section-heading results-heading">
           <div><p class="eyebrow">Overall leaderboard</p><h2 class="display">The race for the season</h2></div>
-          <span class="status status-final">Week 6</span>
+          <span class="status status-upcoming" data-season-table-status>Waiting for results</span>
         </div>
-        <p class="season-scroll-cue">Swipe to see all stats →</p>
-        <div class="table-scroll">
-          <table class="weekly-table season-table">
-            <thead><tr><th>Rank</th><th>Player</th><th>Move</th><th>Weekly Wins</th><th>Correct</th><th>Wrong</th><th>Win %</th><th>Season Score</th></tr></thead>
-            <tbody>
-              <tr class="weekly-first"><td><span class="rank-medal">1</span></td><td><strong>Bill M.</strong><small>2 weekly championships</small></td><td class="rank-up">↑ 3</td><td>2</td><td>70</td><td>20</td><td>77.8%</td><td><strong>100.0</strong></td></tr>
-              <tr><td>2</td><td><strong>Tom S.</strong><small>Week 6 champion</small></td><td class="rank-up">↑ 2</td><td>2</td><td>66</td><td>24</td><td>73.3%</td><td><strong>97.7</strong></td></tr>
-              <tr><td>3</td><td><strong>Cindy C.</strong><small>2 weekly championships</small></td><td class="rank-down">↓ 2</td><td>2</td><td>64</td><td>26</td><td>71.1%</td><td><strong>96.6</strong></td></tr>
-              <tr><td>4</td><td><strong>Mary P.</strong></td><td class="rank-up">↑ 3</td><td>0</td><td>69</td><td>21</td><td>76.7%</td><td><strong>39.4</strong></td></tr>
-              <tr><td>5</td><td><strong>Kevin P.</strong></td><td class="rank-down">↓ 2</td><td>0</td><td>68</td><td>22</td><td>75.6%</td><td><strong>38.9</strong></td></tr>
-              <tr><td>6</td><td><strong>Victor R.</strong></td><td class="rank-even">—</td><td>0</td><td>67</td><td>23</td><td>74.4%</td><td><strong>38.3</strong></td></tr>
-              <tr><td>7</td><td><strong>Steve B.</strong></td><td class="rank-up">↑ 3</td><td>0</td><td>66</td><td>24</td><td>73.3%</td><td><strong>37.7</strong></td></tr>
-              <tr><td>8</td><td><strong>Tyler C.</strong></td><td class="rank-down">↓ 3</td><td>0</td><td>65</td><td>25</td><td>72.2%</td><td><strong>37.1</strong></td></tr>
-              <tr><td>9</td><td><strong>Mike D.</strong></td><td class="rank-down">↓ 1</td><td>0</td><td>65</td><td>25</td><td>72.2%</td><td><strong>37.1</strong></td></tr>
-              <tr><td>10</td><td><strong>Chris H.</strong></td><td class="rank-up">↑ 1</td><td>0</td><td>63</td><td>27</td><td>70.0%</td><td><strong>36.0</strong></td></tr>
-              <tr><td>11</td><td><strong>Dave R.</strong></td><td class="rank-down">↓ 2</td><td>0</td><td>62</td><td>28</td><td>68.9%</td><td><strong>35.4</strong></td></tr>
-              <tr><td>12</td><td><strong>Jim K.</strong></td><td class="rank-up">↑ 2</td><td>0</td><td>61</td><td>29</td><td>67.8%</td><td><strong>34.9</strong></td></tr>
-              <tr><td>13</td><td><strong>Dan L.</strong></td><td class="rank-even">—</td><td>0</td><td>60</td><td>30</td><td>66.7%</td><td><strong>34.3</strong></td></tr>
-              <tr><td>14</td><td><strong>Rick N.</strong></td><td class="rank-down">↓ 2</td><td>0</td><td>59</td><td>31</td><td>65.6%</td><td><strong>33.7</strong></td></tr>
-              <tr><td>15</td><td><strong>Lisa G.</strong></td><td class="rank-up">↑ 1</td><td>0</td><td>58</td><td>32</td><td>64.4%</td><td><strong>33.1</strong></td></tr>
-              <tr><td>16</td><td><strong>Mark T.</strong></td><td class="rank-down">↓ 1</td><td>0</td><td>57</td><td>33</td><td>63.3%</td><td><strong>32.6</strong></td></tr>
-              <tr><td>17</td><td><strong>Susan W.</strong></td><td class="rank-even">—</td><td>0</td><td>55</td><td>35</td><td>61.1%</td><td><strong>31.4</strong></td></tr>
-              <tr><td>18</td><td><strong>Bob A.</strong></td><td class="rank-even">—</td><td>0</td><td>53</td><td>37</td><td>58.9%</td><td><strong>30.3</strong></td></tr>
-              <tr><td>19</td><td><strong>Julie F.</strong></td><td class="rank-up">↑ 1</td><td>0</td><td>50</td><td>40</td><td>55.6%</td><td><strong>28.6</strong></td></tr>
-              <tr><td>20</td><td><strong>Paul J.</strong></td><td class="rank-down">↓ 1</td><td>0</td><td>48</td><td>42</td><td>53.3%</td><td><strong>27.4</strong></td></tr>
-            </tbody>
-          </table>
+        <div class="week-story" style="margin-top:0">
+          <div>
+            <p class="eyebrow">Season standings</p>
+            <h2 class="display" data-season-placeholder-title>Standings will appear here.</h2>
+            <p data-season-placeholder-copy>The first rankings will populate after Week 1 results are graded.</p>
+          </div>
         </div>
-        <p class="table-note">Season Score = 60 × (weekly wins ÷ most weekly wins) + 40 × (correct picks ÷ most correct picks). Scores are rounded to one decimal. Tied scores are ordered by total correct picks.</p>
       </section>
 
       <section class="card week-story season-snapshot">
-        <div><p class="eyebrow">Season snapshot</p><h2 class="display">Through six weeks</h2></div>
-        <div class="week-stat"><strong>3</strong><span>Multi-week winners</span></div>
-        <div class="week-stat"><strong>70</strong><span>Most correct games</span></div>
-        <div class="week-stat"><strong>12</strong><span>Weeks remaining</span></div>
-        <div class="week-stat"><strong>3.4</strong><span>Top-3 spread</span></div>
+        <div><p class="eyebrow">Season snapshot</p><h2 class="display" data-snapshot-title>Ready for Week 1</h2><p data-snapshot-copy>Season stats will build as games are completed and graded.</p></div>
       </section>
     </div>
   </main>
@@ -220,5 +128,38 @@
   <footer class="site-footer"><div class="container footer-inner"><a class="brand" href="/"><span class="brand-mark">SG</span><span class="brand-name">Sonoran Games</span></a><div class="footer-copy"><p>Friendly competition. Serious bragging rights.</p><p>© <span data-copyright-year>2026</span> Project605 LLC. All rights reserved.</p><p>Sonoran Games, including its original content, design, and software, may not be reproduced without permission.</p></div></div></footer>
   <script src="/assets/js/navigation.js"></script>
   <script src="/assets/js/standings.js"></script>
+  <script>
+    (() => {
+      const seasonStart = new Date('2026-09-10T00:20:00Z');
+      if (Date.now() < seasonStart.getTime()) return;
+
+      const set = (selector, text) => {
+        const el = document.querySelector(selector);
+        if (el) el.textContent = text;
+      };
+
+      set('[data-weekly-eyebrow]', 'Week 1');
+      set('[data-weekly-toolbar-copy]', 'Week 1 is underway. Results will appear as games are completed and graded.');
+      set('[data-weekly-status]', 'In progress');
+      set('[data-weekly-title]', 'Week 1 is underway.');
+      set('[data-weekly-lead]', 'Our first champion is being decided.');
+      set('[data-weekly-copy]', 'The Week 1 champion and winning tiebreaker will appear here after final grading.');
+      set('[data-weekly-table-status]', 'In progress');
+      set('[data-weekly-placeholder-title]', 'Week 1 results are in progress.');
+      set('[data-weekly-placeholder-copy]', 'The final leaderboard will appear after Week 1 games are graded.');
+
+      set('[data-season-eyebrow]', '2026 season');
+      set('[data-season-toolbar-copy]', 'The 2026 season is underway. Rankings will update as results are graded.');
+      set('[data-season-status]', 'In progress');
+      set('[data-season-title]', 'The season race is underway.');
+      set('[data-season-lead]', 'Rankings begin with Week 1.');
+      set('[data-season-copy]', 'The first season leader will appear as completed results are graded.');
+      set('[data-season-table-status]', 'In progress');
+      set('[data-season-placeholder-title]', 'Season standings are underway.');
+      set('[data-season-placeholder-copy]', 'The first rankings will appear after Week 1 results are graded.');
+      set('[data-snapshot-title]', 'Week 1 underway');
+      set('[data-snapshot-copy]', 'Season stats will build as games are completed and graded.');
+    })();
+  </script>
 </body>
 </html>
